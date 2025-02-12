@@ -1,0 +1,382 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}  % Add this for adjustwidth
+
+\title{The Fundamental Theorem of Calculus}
+\author{Gary Hobson}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+% *******************************************************************
+% ********************    Slide 2: Introduction    ******************
+% *******************************************************************
+
+\begin{frame}{Introduction}
+\begin{itemize}
+    \item The Fundamental Theorem of Calculus (FTC) establishes the relationship between differentiation and integration.
+    \item It has two main parts:
+    \begin{enumerate}
+        \item The first part states that an antiderivative can be obtained through integration.
+        \item The second part states that differentiation and integration are inverse processes.
+    \end{enumerate}
+\end{itemize}
+\end{frame}
+
+% *******************************************************************
+% ********** Slide 3: Proof of Part 1 - Derivative Definition *******
+% *******************************************************************
+
+\begin{frame}{Proof of Part 1 - Derivative Definition}
+\textbf{\normalsize Proof:}
+
+\begin{itemize}
+    \item Applying the Definition of the Derivative:\\
+    To prove this formally, we use the definition of the derivative:
+    \[
+    F'(x) = \lim\limits_{h \to 0} \frac{F(x+h) - F(x)}{h}.
+    \]
+
+    This definition expresses the rate of change of \( F(x) \) as the limit of the difference quotient.
+\end{itemize}
+\end{frame}
+
+% *******************************************************************
+% ******* Slide 4: Proof of Part 1 - Derivative Definition pt2 ******
+% *******************************************************************
+
+\begin{frame}{Expressing \( F(x+h) - F(x) \) Using the Integral Definition:}
+
+    \textbf{Since \( F(x) \) is defined as:}
+    \tiny
+    \[
+    F(x) = \int_a^x f(t) \, dt,
+    \]
+
+  
+
+\begin{adjustwidth}{5em}{0em}
+
+    \textbullet\ Substituting \( x+h \) gives:
+    
+    \[
+    F(x+h) = \int_a^{x+h} f(t) \, dt.
+    \]
+
+    \textbullet\ Now, computing the difference:
+
+    \[
+    F(x+h) - F(x) = \int_a^{x+h} f(t) \, dt - \int_a^x f(t) \, dt.
+    \]
+
+    \textbullet\ Using the additivity property of definite integrals:
+
+    \[
+    \int_a^{x+h} f(t) \, dt = \int_a^x f(t) \, dt + \int_x^{x+h} f(t) \, dt.
+    \]
+
+    \textbullet\ Thus, subtracting \( \int_a^x f(t) \, dt \) (ie.. \(F(x)\)) from both sides, we get:
+
+    \[
+    F(x+h) - F(x) = \int_x^{x+h} f(t) \, dt.
+    \]
+\end{adjustwidth}
+\end{frame}
+\newpage 
+
+% *******************************************************************
+% ********** Slide 5: Proof of Part 1 - Mean Value Theorem  *********
+% *******************************************************************
+
+
+\begin{frame}{Applying the Mean Value Theorem for Integrals:}
+
+The Mean Value Theorem for Integrals states that if \( f \) is continuous on an interval \( [a, b] \), then there exists some point \( c \in [a, b] \) such that:
+\begin{adjustwidth}{5em}{0em}
+    \footnotesize
+    \[
+    \int_a^b f(t) \, dt = f(c) \cdot (b-a).
+    \]
+    Applying this theorem to the integral \( \int_x^{x+h} f(t) \, dt \), we conclude that there exists some \( c \in [x, x+h] \) such that:
+
+    \[
+    \int_x^{x+h} f(t) \, dt = f(c) \cdot h.
+    \]
+
+    This equation tells us that the integral over the small interval \( [x, x+h] \) can be approximated as \( f(c) \) times the width of the interval \( h \).
+    \end{adjustwidth}
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ********** Slide 6: Proof of Part 1 - Taking the Limit  ***********
+% *******************************************************************
+\begin{frame}{Taking the Limit:}
+    \footnotesize
+    Dividing both sides by \( h \), we obtain:
+
+    \[
+    \frac{F(x+h) - F(x)}{h} = f(c).
+    \]
+
+    Now, we take the limit as \( h \to 0 \). Since \( c \) is in the interval \( [x, x+h] \) and \( f(x) \) is continuous, we know that \( c \to x \) as \( h \to 0 \), so \( f(c) \to f(x) \).
+
+    So we get:
+
+    \[
+    \lim\limits_{h \to 0} \frac{F(x+h) - F(x)}{h} = f(x).
+    \]
+
+    Since this is exactly the definition of the derivative, we conclude:
+
+    \[
+    F'(x) = f(x).
+    \]
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ********** Slide 7: Proof of Part 1 - Conclusion fo pt1 ***********
+% *******************************************************************
+\begin{frame}{Conclusion of Part 1:}
+    \begin{itemize}
+        \item This completes the proof of Part 1 of the Fundamental Theorem of Calculus.
+        \item The key takeaway is that if we construct a function by integrating another function, then the derivative of that integral function brings us back to the original function.
+        \item This establishes the fundamental inverse relationship between differentiation and integration.
+    \end{itemize}
+\end{frame}
+
+\newpage
+
+% *******************************************************************
+% ************* Slide 8: Proof of Part 2 - The Goal *****************
+% *******************************************************************
+\begin{frame}{Proof of Part 2 of the Fundamental Theorem of Calculus}
+%\section*{Detailed Explanation of the Proof of Part 2 of the Fundamental Theorem of Calculus (FTC)}
+
+\textbf{Step 1: Understanding the Goal}
+
+The second part of the Fundamental Theorem of Calculus states that:
+
+\[
+\int_{a}^{b} f(x) \,dx = F(b) - F(a),
+\]
+
+where \( F(x) \) is an antiderivative of \( f(x) \), meaning:
+
+\[
+F'(x) = f(x).
+\]
+
+This result is crucial because it tells us that we can evaluate a definite integral simply by finding an antiderivative rather than computing an infinite sum of areas.
+
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ***** Slide 9: Proof of Part 2 - Partitioning the Interval ********
+% *******************************************************************
+\begin{frame}
+\textbf{Step 2: Partitioning the Interval}
+
+To prove this, we divide the interval \([a, b]\) into \( n \) subintervals:
+
+\[
+a = x_0 < x_1 < x_2 < \dots < x_n = b.
+\]
+
+Each subinterval has a small width \( \Delta x_i \), which is given by:
+
+\[
+\Delta x_i = x_i - x_{i-1}.
+\]
+
+The goal is to approximate the integral 
+
+\[
+\int_{a}^{b} f(x) \,dx
+\]
+
+using a Riemann sum and then take the limit as the partition gets finer.
+
+\end{frame}
+\newpage
+% *******************************************************************
+% ******* Slide 10: Proof of Part 2 - Mean Value Theorem ************
+% *******************************************************************
+
+\begin{frame}
+\textbf{Step 3: Applying the Mean Value Theorem}
+
+Since \( F(x) \) is differentiable, we apply the Mean Value Theorem (MVT) to each subinterval \([x_{i-1}, x_i]\). The MVT states that for each subinterval, there exists some point \( c_i \in [x_{i-1}, x_i] \) such that:
+
+\[
+F(x_i) - F(x_{i-1}) = F'(c_i) \cdot \Delta x_i.
+\]
+
+Since we know that \( F'(x) = f(x) \), this simplifies to:
+
+\[
+F(x_i) - F(x_{i-1}) = f(c_i) \cdot \Delta x_i.
+\]
+
+This equation expresses the small change in \( F(x) \) over each subinterval in terms of the function \( f(x) \).
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ******* Slide 11: Proof of Part 2 - Summing the Intervals *********
+% *******************************************************************
+\begin{frame}
+\textbf{Step 4: Summing Over All Subintervals}
+
+Now, we sum this equation over all subintervals:
+
+\[
+\sum_{i=1}^{n} \left[ F(x_i) - F(x_{i-1}) \right] = \sum_{i=1}^{n} f(c_i) \Delta x_i.
+\]
+
+On the left-hand side, notice that it forms a telescoping sum:
+
+\[
+[F(x_1) - F(x_0)] + [F(x_2) - F(x_1)] + \dots + [F(x_n) - F(x_{n-1})].
+\]
+
+Since all the intermediate terms cancel out, we are left with:
+
+\[
+F(b) - F(a) = \sum_{i=1}^{n} f(c_i) \Delta x_i.
+\]
+
+The right-hand side is a Riemann sum, which approximates the integral:
+
+\[
+\int_{a}^{b} f(x) \, dx.
+\]
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ********* Slide 12: Proof of Part 2 - Taking the Limit ************
+% *******************************************************************
+\begin{frame}
+\textbf{Step 5: Taking the Limit}
+
+To obtain the exact value of the integral, we take the limit as the partition gets infinitely fine (i.e., as the maximum subinterval width approaches zero):
+
+\[
+\lim_{n \to \infty} \sum_{i=1}^{n} f(c_i) \Delta x_i = \int_{a}^{b} f(x) \, dx.
+\]
+
+Since the left-hand side is already equal to \( F(b) - F(a) \), we conclude:
+
+\[
+\int_{a}^{b} f(x) \, dx = F(b) - F(a).
+\]
+
+This proves that the definite integral can be computed simply by evaluating the antiderivative at the endpoints.
+\end{frame}
+\newpage
+
+% *******************************************************************
+% ******* Slide 13: Proof of Part 2 - Summing the Intervals *********
+% *******************************************************************
+
+\begin{frame}{Part 2 Conclusion}
+    \begin{itemize}
+        \item This proof shows that instead of manually computing an infinite sum of areas, we can evaluate a definite integral just by finding an antiderivative and subtracting its values at the limits of integration.
+        \item The Fundamental Theorem of Calculus (Part 2) is powerful because it transforms the problem of summing an infinite number of tiny areas into a simple subtraction problem.
+    \end{itemize}
+\end{frame}
+\newpage
+
+
+% *******************************************************************
+% **************** Slide 14: Applications of FTC ********************
+% *******************************************************************
+
+
+\begin{frame}{Applications of the Fundamental Theorem of Calculus}
+
+    \begin{itemize}
+        \tiny
+        \item \textbf{Simplifies Computation:} The FTC allows us to compute definite integrals using antiderivatives, avoiding the need for summing infinite small areas. Such as:
+        \[
+        \int_0^1 2x \, dx = x^2 \Big|_0^1 = 1 - 0 = 1.
+        \]
+
+        \item \textbf{Physics \& Motion:} Used to calculate displacement, velocity, and acceleration in kinematics.
+        \begin{itemize}
+            \tiny
+            \item Example: If a particle moves with velocity \( v(t) \), its displacement over time \( [a, b] \) is given by:
+            \[
+            \int_a^b v(t) \, dt = s(b) - s(a)
+            \]
+            where \( s(t) \) is the position function.
+        \end{itemize}
+    
+        \item \textbf{Engineering \& Signal Processing:} Used in control systems, fluid dynamics, and electrical circuits.
+        \begin{itemize}
+            \tiny
+            \item Example: Finding the charge \( Q \) stored in a capacitor by integrating the current over time:
+            \[
+            Q = \int_0^T I(t) \, dt
+            \]
+        \end{itemize}
+    
+        \item \textbf{Economics \& Finance:} Used to model accumulated profit, cost, and consumer/producer surplus.
+        \begin{itemize}
+            \tiny
+            \item Example: If \( M(x) \) is the marginal cost function, the total cost over an interval is:
+            \[
+            \int_{x_1}^{x_2} M(x) \, dx = C(x_2) - C(x_1)
+            \]
+        \end{itemize}
+    
+        \item \textbf{Probability \& Statistics:} Helps compute probabilities from probability density functions (PDFs).
+        \begin{itemize}
+            \tiny
+            \item Example: The probability that a continuous random variable \( X \) lies in an interval \( [a, b] \) is:
+            \[
+            P(a \leq X \leq b) = \int_a^b f(x) \, dx
+            \]
+            where \( f(x) \) is the probability density function.
+        \end{itemize}
+    
+    \end{itemize}
+    
+    \end{frame}
+
+\newpage
+
+
+
+% *******************************************************************
+% ***************** Slide 15: Conclusions of FTC ********************
+% *******************************************************************
+
+
+
+\begin{frame}{Conclusion}
+
+    \begin{itemize}
+        \footnotesize
+        \item \textbf{Bridge Between Differentiation and Integration:} The Fundamental Theorem of Calculus (FTC) establishes the deep connection between these two fundamental operations.
+        
+        \item \textbf{Part 1 - Differentiation of Integrals:} States that the derivative of an integral of a function recovers the original function, confirming that differentiation undoes integration.
+        
+        \item \textbf{Part 2 - Evaluating Definite Integrals:} Provides an efficient method for computing definite integrals by evaluating an antiderivative at the limits of integration, avoiding the complexity of Riemann sums.
+        
+        \item \textbf{Practical Significance:} The FTC simplifies complex computations and has widespread applications in physics, engineering, economics, and probability theory.
+    
+        \item \textbf{Core Principle of Calculus:} Serves as a foundational result in real analysis and advanced mathematics, enabling the development of further concepts such as differential equations, multivariable calculus, and integral transformations.
+    
+        \item \textbf{Conclusion:} The FTC is not only a fundamental result in pure mathematics but also a powerful tool that simplifies problem-solving across various scientific and engineering disciplines.
+    \end{itemize}
+    
+    \end{frame}
+
+\end{document}
