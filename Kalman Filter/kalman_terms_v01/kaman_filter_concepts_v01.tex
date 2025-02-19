@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage{amsmath, amssymb, graphicx}
+\usepackage[a4paper, margin=0.5cm]{geometry} % Adjust the margin size
+
+
 
 \title{Understanding the Symbols in the Kalman Filter}
 \author{}
@@ -115,7 +118,28 @@ It is computed using the Kalman update equation:
 It represents the best estimate of the state after blending the prediction with the new measurement.
 
 
-
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Term} & \textbf{Description} \\
+        \hline
+        \textbf{True Position} & $x_k$ \\
+        & The real (but unknown) position of the car. \\
+        \hline
+        \textbf{Predicted Position} & $\hat{x}_k^-$ \\
+        & Where we think the car should be before seeing the GPS reading. \\
+        \hline
+        \textbf{Measured Position} & $y_k$ \\
+        & The noisy GPS measurement. \\
+        \hline
+        \textbf{Updated Position} & $\hat{x}_k$ \\
+        & The corrected estimate after blending prediction \& measurement. \\
+        \hline
+    \end{tabular}
+    \caption{Key Terms in Kalman Filtering for Position Estimation}
+    \label{tab:kalman_terms}
+\end{table}
 
 
 

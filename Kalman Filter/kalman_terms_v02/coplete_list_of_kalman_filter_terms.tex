@@ -1,0 +1,249 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, graphicx}
+\usepackage[a4paper, margin=0.5cm]{geometry} % Adjust the margin size
+\usepackage{pifont} % Add this in your preamble
+\usepackage{fancyhdr} % Allows custom headers and footers
+\pagestyle{fancy} % Enables custom page style
+\fancyhf{} % Clears default header/footer settings
+\fancyfoot[C]{\thepage} % Places page number in the center of the footer
+
+
+\title{Understanding the Symbols in the Kalman Filter}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+\section{State Vector ($x_k$)}
+\textbf{Symbol:} $x_k \in \mathbb{R}^{n}$, where $n$ is the number of state variables.  \\
+\textbf{What it Represents:} The state of the system at time $k$.  \\
+\textbf{Role in Kalman Filter:} The quantity we estimate at each time step.  \\
+\textbf{Example:} If tracking an object's position and velocity in 1D:
+\[
+    x_k = \begin{bmatrix} \text{position} \\ \text{velocity} \end{bmatrix} \in \mathbb{R}^{2}
+\]
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Term} & \textbf{Description} \\
+        \hline
+        \textbf{True Position} & $x_k$ \\
+        & The real (but unknown) position of the car. \\
+        \hline
+        \textbf{Predicted Position} & $\hat{x}_k^-$ \\
+        & Where we think the car should be before seeing the GPS reading. \\
+        \hline
+        \textbf{Measured Position} & $y_k$ \\
+        & The noisy GPS measurement. \\
+        \hline
+        \textbf{Updated Position} & $\hat{x}_k$ \\
+        & The corrected estimate after blending prediction \& measurement. \\
+        \hline
+    \end{tabular}
+    \caption{Key Terms in Kalman Filtering for Position Estimation}
+    \label{tab:kalman_terms}
+\end{table}
+
+\newpage
+
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
+\section{State Transition Matrix ($A_{k-1}$)}
+\textbf{Symbol:} $A_{k-1} \in \mathbb{R}^{n \times n}$  \\
+\textbf{What it Represents:} Defines how the state evolves from time step $k-1$ to $k$.  \\
+\textbf{Example:} If tracking position and velocity:
+\[
+    A_k = \begin{bmatrix} 1 & \Delta t \\ 0 & 1 \end{bmatrix}
+\]  
+
+
+The System Transition Matrix ($A$) is a fundamental component of the Kalman Filter, governing how the state of the system evolves over time.
+
+\subsection*{Definition}
+
+$A$ (also called the State Transition Matrix) describes how the state vector transforms from one time step to the next in the absence of control inputs or external influences.
+
+Mathematically, the predicted state at time $k$ is given by:
+
+\begin{equation}
+    x_k^- = A x_{k-1} + B u_k + w_k
+\end{equation}
+
+where:
+
+- $x_k^-$ is the predicted state at time $k$,
+- $x_{k-1}$ is the previous state,
+- $B u_k$ represents the control input effect,
+- $w_k$ is the process noise (random disturbances).
+
+\subsection*{Purpose and Role}
+
+The role of $A$ is to capture the natural dynamics of the system, ensuring that:
+
+- The state evolves correctly over time based on known physical laws.
+- The previous state is propagated forward even before incorporating any new sensor measurements.
+- It can represent motion models, such as constant velocity or acceleration.
+
+\subsection*{Example: Motion in One Dimension}
+
+For a system tracking position and velocity in 1D motion, the state vector is:
+
+\begin{equation}
+    x_k = \begin{bmatrix} 
+        \text{position} \\
+        \text{velocity} 
+    \end{bmatrix}
+\end{equation}
+
+If the object follows constant velocity motion, the transition matrix is:
+
+\begin{equation}
+    A_k = \begin{bmatrix} 
+        1 & \Delta t \\
+        0 & 1 
+    \end{bmatrix} = \begin{bmatrix} 
+        A_{11} & A_{12} \\
+        A_{21} & A_{22}
+    \end{bmatrix}
+\end{equation}
+
+where:
+
+- $1$: This coefficient ensures that the position from the previous state is carried over to the next state without any modification.\\
+- $\Delta t$: This coefficient accounts for the contribution of velocity to position over the time step $\Delta t$, meaning that velocity affects position change.\\
+- $0$: This coefficient indicates that position does not directly influence velocity in the transition model.\\
+- $1$: This coefficient ensures that velocity remains unchanged if there is no external influence.\\
+
+\subsection*{Key Properties of $A$}
+
+- \textbf{Size:} $A$ is an $n \times n$ matrix, where $n$ is the number of state variables.\\
+- \textbf{Identity Components:} Often contains ones along the diagonal to maintain previous state values.\\
+- \textbf{Time Dependence:} $A$ can be constant or change over time for nonlinear systems.\\
+
+\subsection*{Summary}
+
+- The System Transition Matrix defines how the state evolves over time.\\
+- It depends on the motion model of the system (e.g., constant velocity, acceleration).\\
+- It is used in the prediction step of the Kalman Filter.\\
+- Correctly designing $A$ ensures accurate state predictions before sensor corrections are applied.\\
+
+\newpage
+
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
+\section{Control Input Matrix (\(\mathbf{B_{k-1}}\))}
+
+\subsection*{Definition}
+The Control Input Matrix \(\mathbf{B_{k-1}}\) maps external control inputs (e.g., acceleration, force) into the state space.  
+It determines how much the control input affects each state variable over time.
+
+\subsection*{Symbol \& Dimensions}
+\[
+B_{k-1} \in \mathbb{R}^{n \times m}
+\]
+where:
+\begin{itemize}
+    \item \( n \) = number of state variables (e.g., position, velocity)
+    \item \( m \) = number of control inputs (e.g., acceleration, steering)
+\end{itemize}
+
+\subsection*{Example: Acceleration as a Control Input}
+If the system tracks position and velocity in 1D with an acceleration input, then:
+\[
+B_k =
+\begin{bmatrix}
+\frac{1}{2} \Delta t^2 \\
+\Delta t
+\end{bmatrix}
+\]
+where:
+\begin{itemize}
+    \item \( \frac{1}{2} \Delta t^2 \) → Controls how acceleration affects position.
+    \item \( \Delta t \) → Controls how acceleration affects velocity.
+\end{itemize}
+
+\subsection*{How \(\mathbf{B}\) Works in the Kalman Filter}
+\(\mathbf{B}\) appears in the state prediction equation:
+\[
+\hat{x}_k^- = A \hat{x}_{k-1} + B u_k
+\]
+where:
+\begin{itemize}
+    \item \( \hat{x}_k^- \) = predicted state vector
+    \item \( A \) = system transition matrix
+    \item \( B \) = control input matrix
+    \item \( u_k \) = control input (e.g., acceleration)
+\end{itemize}
+
+\subsection*{Intuition: Why Does \(\mathbf{B}\) Look Like This?}
+\begin{itemize}
+    \item The first row \( \frac{1}{2} \Delta t^2 \) represents how acceleration impacts position (from physics: 
+    \[
+    x = x_0 + v_0 t + \frac{1}{2} a t^2
+    \]
+    ).
+    \item The second row \( \Delta t \) represents how acceleration changes velocity over time:  
+    \[
+    v = v_0 + a t
+    \]
+\end{itemize}
+
+\subsection*{Real-World Example: Car Moving in 1D}
+\begin{itemize}
+    \item \textbf{State vector:}  
+    \[
+    x_k =
+    \begin{bmatrix}
+    \text{position} \\
+    \text{velocity}
+    \end{bmatrix}
+    \]
+    \item \textbf{Control input:}  
+    \[
+    u_k = \text{applied acceleration}
+    \]
+    \item \textbf{Prediction:}  
+    If 
+    \[
+    B_k =
+    \begin{bmatrix}
+    \frac{1}{2} \Delta t^2 \\
+    \Delta t
+    \end{bmatrix}
+    \]
+    Then a control input of \( u_k = 2 \) m/s\(^2\) would update position and velocity based on acceleration.
+\end{itemize}
+
+\subsection*{Key Takeaways}
+\begin{itemize}
+    \item \ding{51} \(\mathbf{B}\) converts control inputs into changes in state.
+    \item \ding{51} Each row affects a different part of the state vector (position, velocity, etc.).
+    \item \ding{51} Physics determines the structure of \(\mathbf{B}\) (e.g., motion equations).
+    \item \ding{51} Larger control input means a stronger effect on state changes.
+\end{itemize}
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
+
+
+
+\end{document}
