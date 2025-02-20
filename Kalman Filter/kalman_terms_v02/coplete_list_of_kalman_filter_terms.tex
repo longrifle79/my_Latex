@@ -3,6 +3,8 @@
 \usepackage[a4paper, margin=0.5cm]{geometry} % Adjust the margin size
 \usepackage{pifont} % Add this in your preamble
 \usepackage{fancyhdr} % Allows custom headers and footers
+\usepackage{booktabs}
+
 \pagestyle{fancy} % Enables custom page style
 \fancyhf{} % Clears default header/footer settings
 \fancyfoot[C]{\thepage} % Places page number in the center of the footer
@@ -503,6 +505,451 @@ Thus, updating \(\mathbf{P_k^-}\) correctly is essential for the Kalman filter t
     \item \(\mathbf{Q_k}\) ensures the filter accounts for unpredictable real-world changes.
     \item A higher \(\mathbf{P_k^-}\) increases the Kalman Gain \(\mathbf{K_k}\), making the filter trust the sensor more.
 \end{itemize}
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+\section{Understanding the Process Noise Covariance Matrix \(\mathbf{Q_k}\)}
+
+\subsection*{What is \(\mathbf{Q_k}\)?}
+The process noise covariance matrix \(\mathbf{Q_k}\) represents the uncertainty in the system's motion model. It accounts for random effects that influence the system but are not explicitly modeled, such as:
+\begin{itemize}
+    \item Friction
+    \item Wind resistance
+    \item Sensor drift
+    \item Unmodeled acceleration changes
+\end{itemize}
+
+\subsection*{What Does \(\mathbf{Q_k}\) Do in the Kalman Filter?}
+\textbf{Introduces Uncertainty in Predictions}
+\begin{itemize}
+    \item Since real-world systems do not follow perfect mathematical models, \(\mathbf{Q_k}\) allows the filter to remain flexible and not overly confident in its predictions.
+\end{itemize}
+
+\textbf{Prevents the Filter from Ignoring Real-World Changes}
+\begin{itemize}
+    \item If \(\mathbf{Q_k}\) is too small, the filter assumes the model is perfect and does not adjust when unexpected changes occur.
+    \item If \(\mathbf{Q_k}\) is too large, the filter relies too much on sensor data, leading to overcorrections.
+\end{itemize}
+
+\textbf{Affects the Kalman Gain \(\mathbf{K_k}\)}
+\begin{itemize}
+    \item A higher \(\mathbf{Q_k}\) results in higher uncertainty in the prediction, making the filter trust sensor measurements more.
+    \item A lower \(\mathbf{Q_k}\) makes the filter trust its motion model more.
+\end{itemize}
+
+\subsection*{Where Can You Find Data for \(\mathbf{Q_k}\)?}
+\(\mathbf{Q_k}\) is usually estimated using known system properties, experimental data, or manufacturer specifications.
+
+\textbf{From Sensor Data Sheets}
+\begin{itemize}
+    \item If you are using a GPS like the NEO-M8U, the datasheet provides velocity accuracy and position drift information, which can be used to estimate \(\mathbf{Q_k}\).
+    \item Example: If the GPS reports position uncertainty of 1.5 m and velocity uncertainty of 0.05 m/s, these values help determine reasonable process noise values.
+\end{itemize}
+
+\textbf{By Experimentation}
+\begin{itemize}
+    \item Collect real-world data and measure how much the system deviates from expected motion over time.
+    \item Compute the variance of these deviations to approximate \(\mathbf{Q_k}\).
+\end{itemize}
+
+\textbf{By Analytical Estimation}
+\begin{itemize}
+    \item If the system has known physical properties (e.g., a robot moving with known acceleration noise), we can compute \(\mathbf{Q_k}\) based on physics-based models.
+\end{itemize}
+
+\subsection*{Example of \(\mathbf{Q_k}\) for a Car Moving in a Straight Line}
+For a car tracking position and velocity, a reasonable choice for \(\mathbf{Q_k}\) might be:
+
+\[
+\mathbf{Q_k} =
+\begin{bmatrix}
+0.0125 & 0.025 \\
+0.025 & 0.05
+\end{bmatrix}
+\]
+
+\begin{itemize}
+    \item \(0.0125\) → Small position variance (position uncertainty grows slowly over time).
+    \item \(0.05\) → Larger velocity variance (since acceleration may change more unpredictably).
+\end{itemize}
+
+These values prevent the filter from being overconfident while still keeping predictions stable.
+
+\subsection*{Summary of \(\mathbf{Q_k}\)}
+\begin{itemize}
+    \item \(\mathbf{Q_k}\) represents uncertainty in the system’s motion model.
+    \item It accounts for random effects like sensor drift, friction, or external forces.
+    \item \(\mathbf{Q_k}\) balances how much the filter trusts its motion model vs. sensor data.
+    \item It is estimated from datasheets, experiments, or physics-based models.
+\end{itemize}
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+\section*{Understanding the Measurement Matrix \(\mathbf{H_k}\)}
+
+\subsection{What is \(\mathbf{H_k}\)?}
+The measurement matrix \(\mathbf{H_k}\) defines how the system’s internal state is mapped to the measurements from a sensor. Since the Kalman filter tracks an entire state vector, but most sensors only measure part of that state, \(\mathbf{H_k}\) acts as a bridge between the state estimate and what is actually observed.
+
+\subsection*{What Does \(\mathbf{H_k}\) Do in the Kalman Filter?}
+\textbf{Extracts Measured Variables from the State Vector}
+\begin{itemize}
+    \item Not all elements in the state vector are directly observable.
+    \item \(\mathbf{H_k}\) ensures that the filter only compares predictions for measurable quantities with real sensor data.
+\end{itemize}
+
+\textbf{Transforms the State to Match Sensor Data}
+\begin{itemize}
+    \item The Kalman filter internally tracks a state vector like \(\begin{bmatrix} \text{position} \\ \text{velocity} \end{bmatrix}\), but a GPS sensor may only provide position.
+    \item \(\mathbf{H_k}\) is used to extract only the position from the state vector so it can be compared with the GPS measurement.
+\end{itemize}
+
+\textbf{Affects the Kalman Gain \(\mathbf{K_k}\)}
+\begin{itemize}
+    \item \(\mathbf{H_k}\) helps the filter determine how much to adjust the estimate based on how reliable and useful the measurement is.
+    \item If \(\mathbf{H_k}\) is incorrect or missing key state information, the Kalman filter won't update properly.
+\end{itemize}
+
+\subsection*{Where Can You Find \(\mathbf{H_k}\)?}
+\(\mathbf{H_k}\) is determined by the type of sensor used.
+
+\textbf{From Sensor Specifications}
+\begin{itemize}
+    \item If the sensor only measures position, \(\mathbf{H_k}\) selects only the position component from the state vector.
+    \item If the sensor measures both position and velocity, \(\mathbf{H_k}\) is larger and selects both components.
+\end{itemize}
+
+\textbf{By Knowing What Data is Available}
+\begin{itemize}
+    \item If using a GPS, it provides position, so \(\mathbf{H_k}\) should extract the position component.
+    \item If using an IMU (accelerometer + gyroscope), it provides velocity and acceleration, so \(\mathbf{H_k}\) must extract those values.
+\end{itemize}
+
+\subsection*{Example: Car Moving in a Straight Line}
+Assume the state vector tracks position and velocity:
+\[
+\mathbf{x_k} =
+\begin{bmatrix}
+\text{position} \\
+\text{velocity}
+\end{bmatrix}
+\]
+
+If a GPS sensor only measures position, then:
+\[
+\mathbf{H_k} =
+\begin{bmatrix}
+1 & 0
+\end{bmatrix}
+\]
+This means:
+\begin{itemize}
+    \item The \(1\) extracts the position from the state vector.
+    \item The \(0\) ignores velocity since GPS does not measure it.
+\end{itemize}
+
+If the sensor measured both position and velocity, then:
+\[
+\mathbf{H_k} =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\]
+This tells the Kalman filter to use both position and velocity measurements.
+
+\subsection*{Summary of \(\mathbf{H_k}\)}
+\begin{itemize}
+    \item \(\mathbf{H_k}\) defines how the state is mapped to sensor measurements.
+    \item It extracts only the measured parts of the state vector.
+    \item \(\mathbf{H_k}\) must be chosen based on the type of sensor used.
+    \item Incorrect \(\mathbf{H_k}\) leads to incorrect state updates.
+\end{itemize}
+
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+\section{Understanding the Measurement Noise Covariance Matrix \(\mathbf{R_k}\)}
+
+\subsection*{What is \(\mathbf{R_k}\)?}
+The measurement noise covariance matrix \(\mathbf{R_k}\) represents the uncertainty in sensor measurements. It defines how much trust the Kalman filter should place in the sensor data by quantifying the random noise introduced by the sensor.
+
+\subsection*{What Does \(\mathbf{R_k}\) Do in the Kalman Filter?}
+
+\textbf{Models Sensor Accuracy}
+\begin{itemize}
+    \item Every sensor has some amount of error (e.g., GPS error in meters, accelerometer drift, or radar noise).
+    \item \(\mathbf{R_k}\) ensures the Kalman filter accounts for this noise, preventing it from overreacting to bad measurements.
+\end{itemize}
+
+\textbf{Determines Trust in Sensor Data}
+\begin{itemize}
+    \item If \(\mathbf{R_k}\) is small, the filter trusts sensor data more and makes strong corrections based on measurements.
+    \item If \(\mathbf{R_k}\) is large, the filter trusts the motion model more and ignores noisy sensor readings.
+\end{itemize}
+
+\textbf{Affects the Kalman Gain \(\mathbf{K_k}\)}
+\begin{itemize}
+    \item Higher \(\mathbf{R_k} \Rightarrow\) Lower Kalman Gain \(\mathbf{K_k}\) \(\Rightarrow\) More reliance on the model, less on the measurement.
+    \item Lower \(\mathbf{R_k} \Rightarrow\) Higher Kalman Gain \(\mathbf{K_k}\) \(\Rightarrow\) More reliance on the sensor data.
+\end{itemize}
+
+\subsection*{Where Can You Find \(\mathbf{R_k}\)?}
+\(\mathbf{R_k}\) is usually determined from sensor specifications or experimentally estimated.
+
+\textbf{From Sensor Data Sheets}
+\begin{itemize}
+    \item A GPS datasheet might say "position accuracy \(\pm 1.5\) meters."
+    \item This translates to: 
+    \[
+    \mathbf{R_k} = 1.5^2 = 2.25
+    \]
+    \item A radar sensor might have an angular measurement error of \(\pm 0.5\) degrees, leading to:
+    \[
+    \mathbf{R_k} = 0.5^2 = 0.25
+    \]
+\end{itemize}
+
+\textbf{By Experimentation}
+\begin{itemize}
+    \item Collect real-world sensor data and compare it to ground truth.
+    \item Compute the variance of the measurement errors over time to determine \(\mathbf{R_k}\).
+\end{itemize}
+
+\textbf{By Manufacturer Calibration}
+\begin{itemize}
+    \item Some sensors provide factory-calibrated covariance values that can be used directly.
+\end{itemize}
+
+\subsection*{Example: Car Moving in a Straight Line with GPS}
+Assume a GPS sensor measures position with a standard deviation of \(1.5\) meters:
+\[
+\mathbf{R_k} =
+\begin{bmatrix}
+2.25
+\end{bmatrix}
+\]
+
+If the GPS also measures velocity with \(0.2\) m/s standard deviation, then:
+\[
+\mathbf{R_k} =
+\begin{bmatrix}
+2.25 & 0 \\
+0 & 0.04
+\end{bmatrix}
+\]
+
+This means:
+\begin{itemize}
+    \item The position measurement has higher uncertainty (\(2.25\) variance).
+    \item The velocity measurement is more precise (\(0.04\) variance).
+\end{itemize}
+
+\newpage
+
+\section*{Difference Between \(\mathbf{R_k}\) and \(\mathbf{Q_k}\) in the Kalman Filter}
+
+\(\mathbf{R_k}\) and \(\mathbf{Q_k}\) both represent uncertainty in the Kalman filter, but they apply to different parts of the system.
+
+\subsection*{1. Process Noise Covariance \(\mathbf{Q_k}\)}
+
+\textbf{What It Represents:}  
+\(\mathbf{Q_k}\) models uncertainty in the motion model, accounting for random forces or unmodeled dynamics that affect the system state.
+
+\textbf{Where It Appears:}  
+Used in the prediction step to update the uncertainty in the predicted state:
+\[
+\mathbf{P_k^-} = \mathbf{A} \mathbf{P_{k-1}} \mathbf{A}^T + \mathbf{Q_k}
+\]
+
+\textbf{What Causes It:}
+\begin{itemize}
+    \item Small unmodeled accelerations (e.g., wind, road bumps in a car, drift in an IMU).
+    \item Imperfect system dynamics (e.g., friction that is not modeled).
+    \item Variability in control inputs (e.g., driver inconsistency in applying acceleration).
+\end{itemize}
+
+\textbf{Where It Comes From:}
+\begin{itemize}
+    \item Estimated from physical properties of the system (e.g., acceleration noise).
+    \item Can be experimentally measured by analyzing how much real-world data deviates from an ideal motion model.
+    \item Sometimes manually tuned to improve filter performance.
+\end{itemize}
+
+\subsection*{2. Measurement Noise Covariance \(\mathbf{R_k}\)}
+
+\textbf{What It Represents:}  
+\(\mathbf{R_k}\) models uncertainty in the sensor readings, accounting for inaccuracies in measurements.
+
+\textbf{Where It Appears:}  
+Used in the correction step when incorporating a new sensor measurement:
+\[
+\mathbf{K_k} = \mathbf{P_k^-} \mathbf{H}^T (\mathbf{H} \mathbf{P_k^-} \mathbf{H}^T + \mathbf{R_k})^{-1}
+\]
+
+\textbf{What Causes It:}
+\begin{itemize}
+    \item Sensor precision limits (e.g., a GPS might have \(\pm1.5\) meters of error).
+    \item Environmental conditions (e.g., noise in radar due to weather).
+    \item Electronic noise in the sensor circuitry.
+\end{itemize}
+
+\textbf{Where It Comes From:}
+\begin{itemize}
+    \item Sensor datasheets (e.g., GPS accuracy reports, IMU noise levels).
+    \item Measured from real data by calculating the variance of sensor errors.
+    \item Factory calibration provided by the manufacturer.
+\end{itemize}
+
+\subsection*{Key Differences Between \(\mathbf{Q_k}\) and \(\mathbf{R_k}\)}
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Feature} & \(\mathbf{Q_k}\) (Process Noise Covariance) & \(\mathbf{R_k}\) (Measurement Noise Covariance) \\
+        \midrule
+        What It Affects & State transition (motion model uncertainty) & Sensor readings (measurement noise) \\
+        Used In & Prediction step & Update step (correction) \\
+        Caused By & External forces, unmodeled system effects & Sensor inaccuracies, electronic noise \\
+        Where It Comes From & Estimated from physics, experiments, tuning & Sensor datasheets, calibration, experiments \\
+        Effect if Too Large & Filter becomes too flexible, ignores the motion model & Filter ignores sensor data, relies too much on the model \\
+        Effect if Too Small & Filter becomes overconfident in motion model & Filter trusts noisy measurements too much \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection*{Example: Car Driving with GPS}
+
+Let’s say we are tracking a car’s position and velocity using a GPS sensor.
+
+\(\mathbf{Q_k}\) accounts for uncertainties in motion (e.g., bumps in the road, wind, or unknown acceleration).
+\[
+\mathbf{Q_k} =
+\begin{bmatrix}
+0.0125 & 0.025 \\
+0.025  & 0.05
+\end{bmatrix}
+\]
+This means we expect small acceleration changes over time.
+
+\(\mathbf{R_k}\) accounts for measurement noise in the GPS sensor (e.g., signal interference or GPS drift).
+\[
+\mathbf{R_k} =
+\begin{bmatrix}
+2.25
+\end{bmatrix}
+\]
+This means the GPS has a variance of 2.25 meters in its position readings.
+
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
+\section{Understanding the Measurement Noise Vector \(\mathbf{v_k}\)}
+
+\subsection*{What is \(\mathbf{v_k}\)?}
+The measurement noise vector \(\mathbf{v_k}\) represents the random errors in sensor measurements at each time step. These errors occur because real-world sensors are never perfect and always introduce some level of uncertainty or noise into the readings.
+
+\subsection*{What Does \(\mathbf{v_k}\) Do in the Kalman Filter?}
+
+\textbf{Accounts for Sensor Errors}  
+\begin{itemize}
+    \item No sensor provides a perfectly accurate measurement. \(\mathbf{v_k}\) models random fluctuations in sensor data due to noise.
+\end{itemize}
+
+\textbf{Prevents Overconfidence in Measurements}  
+\begin{itemize}
+    \item Without \(\mathbf{v_k}\), the Kalman filter would assume the sensor data is perfect, which is never true in reality.
+    \item By considering \(\mathbf{v_k}\), the filter blends sensor readings with the predicted state to improve accuracy.
+\end{itemize}
+
+\textbf{Influences the Kalman Gain \(\mathbf{K_k}\)}  
+\begin{itemize}
+    \item If \(\mathbf{v_k}\) is large, the filter trusts the motion model more and updates less based on measurements.
+    \item If \(\mathbf{v_k}\) is small, the filter trusts the sensor data more and relies heavily on new measurements.
+\end{itemize}
+
+\subsection*{Where Does \(\mathbf{v_k}\) Come From?}
+
+\textbf{Sensor Specifications}  
+\begin{itemize}
+    \item The sensor’s datasheet typically provides the expected noise level.
+    \item Example: A GPS might have an error of \(\pm1.5\) meters, which means \(\mathbf{v_k}\) follows a normal distribution with that variance.
+\end{itemize}
+
+\textbf{Experimental Measurement}  
+\begin{itemize}
+    \item Collect multiple readings from a sensor in a controlled environment and compare them to the ground truth.
+    \item Compute the variance of the errors to estimate \(\mathbf{v_k}\).
+\end{itemize}
+
+\textbf{Randomly Generated in Simulations}  
+\begin{itemize}
+    \item When simulating a Kalman filter, \(\mathbf{v_k}\) is often generated as random noise from a normal distribution:
+    \[
+    \mathbf{v_k} \sim \mathcal{N}(0, \mathbf{R_k})
+    \]
+    \item This ensures the simulation accounts for realistic sensor errors.
+\end{itemize}
+
+\subsection*{Example: Car Tracking with GPS}
+
+Imagine tracking a car's position using GPS. The state vector tracks position and velocity:
+\[
+\mathbf{x_k} =
+\begin{bmatrix}
+\text{position} \\
+\text{velocity}
+\end{bmatrix}
+\]
+The GPS only measures position, but with some error.
+
+Suppose the true position is 50 meters, but the GPS reports 50.8 meters due to noise.
+
+The measurement noise vector is:
+\[
+\mathbf{v_k} = \text{Measured Position} - \text{True Position} = 50.8 - 50 = 0.8
+\]
+Here, \(\mathbf{v_k} = 0.8\) meters, meaning the GPS overestimated the position by 0.8 meters.
+
+If we assume \(\mathbf{v_k}\) follows a normal distribution with zero mean and variance from \(\mathbf{R_k}\), we might say:
+\[
+\mathbf{v_k} \sim \mathcal{N}(0, 2.25)
+\]
+This means GPS errors are normally distributed around zero with a variance of 2.25 meters.
+
+\subsection*{Summary of \(\mathbf{v_k}\)}
+\begin{itemize}
+    \item Represents random noise in sensor measurements.
+    \item Accounts for inaccuracies in real-world sensors.
+    \item Estimated from sensor specs, experiments, or random noise in simulations.
+    \item Works with \(\mathbf{R_k}\) to determine how much trust to place in sensor data.
+\end{itemize}
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
 
 
 
