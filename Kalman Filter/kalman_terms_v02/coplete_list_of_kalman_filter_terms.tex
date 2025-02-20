@@ -242,6 +242,269 @@ where:
 %*************************************************************************************************
 %*************************************************************************************************
 
+\section*{External Control Input (\(\mathbf{u_k}\))}
+
+\subsection*{Definition}
+The control input vector \(\mathbf{u_k}\) represents external forces or influences that actively change the system’s state.
+It is used when the system is not just evolving naturally, but is also being controlled by an external factor (e.g., acceleration, steering, applied force).
+
+\subsection*{Symbol \& Dimensions}
+\[
+\mathbf{u_k} \in \mathbb{R}^m
+\]
+where:
+\begin{itemize}
+    \item \(m\) = number of control inputs.
+\end{itemize}
+
+\subsection*{Example: Acceleration as a Control Input}
+If we are tracking an object’s position and velocity in one dimension (1D) and applying an acceleration, then:
+
+\[
+\mathbf{u_k} = \text{acceleration}
+\]
+
+\begin{itemize}
+    \item If no acceleration is applied, \(\mathbf{u_k} = 0\).
+    \item If a constant acceleration of 2 m/s² is applied, \(\mathbf{u_k} = 2\).
+\end{itemize}
+
+\subsection*{How is \(\mathbf{u_k}\) Measured or Estimated?}
+The control input \(\mathbf{u_k}\) is often measured by sensors or computed based on system dynamics:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Control Input (\(\mathbf{u_k}\))} & \textbf{Sensor Used} & \textbf{How Data is Obtained} \\
+        \hline
+        Acceleration (m/s²) & IMU (Inertial Measurement Unit) & Directly measured by accelerometers. \\
+        Throttle Input (Vehicle Control) & ECU (Engine Control Unit) & Read from vehicle's onboard system. \\
+        Steering Angle (for turning systems) & Gyroscope / Steering Angle Sensor & Measures wheel angle in degrees. \\
+        Force Applied (e.g., robotic arms) & Load Cells / Force Sensors & Measures external force applied. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection*{Extrapolating \(\mathbf{u_k}\) From Data}
+If a system doesn’t have a direct sensor for \(\mathbf{u_k}\), it can be approximated from other data sources:
+
+\begin{itemize}
+    \item \textbf{Velocity Change:} If velocity measurements from GPS or wheel encoders show an increasing trend, acceleration can be estimated as:
+    \[
+    \mathbf{u_k} = \frac{\Delta v}{\Delta t}
+    \]
+    \item \textbf{Predicting Future Inputs:} In robotics, control commands (e.g., PWM signals to motors) can be used as \(\mathbf{u_k}\), assuming known system dynamics.
+\end{itemize}
+
+\subsection*{How \(\mathbf{u_k}\) Works in the Kalman Filter}
+The state prediction equation includes \(\mathbf{u_k}\):
+
+\[
+\hat{x_k}^- = A \hat{x_{k-1}} + B u_k
+\]
+
+where:
+\begin{itemize}
+    \item \(\hat{x_k}^-\) = Predicted state (before correction).
+    \item \(A\) = State transition matrix (natural system evolution).
+    \item \(B\) = Control input matrix (how control input affects the state).
+    \item \(u_k\) = External control input (external influence like acceleration or force).
+\end{itemize}
+
+\subsection*{Intuition: Why Does \(\mathbf{u_k}\) Matter?}
+\begin{itemize}
+    \item If a car is moving without acceleration, its position will change only due to velocity.
+    \item If a driver presses the gas pedal, acceleration \(\mathbf{u_k}\) modifies the velocity and position.
+    \item The control input \(\mathbf{u_k}\) ensures the Kalman filter accounts for these external actions.
+\end{itemize}
+
+\newpage
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+%*************************************************************************************************
+
+
+
+\section{How to Solve for \(\mathbf{P_k^-}\) (Predicted Covariance Matrix)}
+
+The predicted covariance matrix \(\mathbf{P_k^-}\) represents how uncertain we are about our state prediction before incorporating a measurement. It is computed using the process model and process noise covariance \(\mathbf{Q_k}\).
+
+\subsection*{Step 1: The Prediction Equation for \(\mathbf{P_k^-}\)}
+\[
+\mathbf{P_k^-} = \mathbf{A} \mathbf{P_{k-1}} \mathbf{A}^T + \mathbf{Q_k}
+\]
+
+Where:
+\begin{itemize}
+    \item \(\mathbf{P_k^-}\) = Predicted covariance matrix (uncertainty in the predicted state).
+    \item \(\mathbf{A}\) = State transition matrix (how the system evolves over time).
+    \item \(\mathbf{P_{k-1}}\) = Previous covariance matrix (uncertainty from the previous step).
+    \item \(\mathbf{A}^T\) = Transpose of \(\mathbf{A}\) (ensures proper matrix dimensions).
+    \item \(\mathbf{Q_k}\) = Process noise covariance matrix (models uncertainty in the system dynamics).
+\end{itemize}
+
+\subsection*{Step 2: Understanding Each Term}
+\textbf{The Role of \(\mathbf{P_{k-1}}\):}
+\begin{itemize}
+    \item If \(\mathbf{P_{k-1}}\) is large, we were very uncertain about the previous state.
+    \item If \(\mathbf{P_{k-1}}\) is small, we were confident in our previous estimate.
+\end{itemize}
+
+\textbf{The Role of \(\mathbf{A}\) and \(\mathbf{A^T}\):}
+\begin{itemize}
+    \item \(\mathbf{A}\) transforms the uncertainty as it propagates the system forward in time.
+    \item Multiplying \(\mathbf{A P_{k-1} A^T}\) adjusts the uncertainty according to the system's motion model.
+\end{itemize}
+
+\textbf{The Role of \(\mathbf{Q_k}\):}
+\begin{itemize}
+    \item \(\mathbf{Q_k}\) increases the uncertainty, accounting for random disturbances.
+    \item This prevents the filter from being overconfident in its predictions.
+\end{itemize}
+
+\subsection*{Step 3: Solving for \(\mathbf{P_k^-}\) with an Example}
+Let's consider a car moving in a straight line where the state is:
+
+\[
+\mathbf{x_k} =
+\begin{bmatrix}
+\text{position} \\
+\text{velocity}
+\end{bmatrix}
+\]
+
+And the state transition matrix is:
+
+\[
+\mathbf{A} =
+\begin{bmatrix}
+1 & \Delta t \\
+0 & 1
+\end{bmatrix}
+\]
+
+Let's assume:
+
+\[
+\mathbf{P_{k-1}} =
+\begin{bmatrix}
+0.1 & 0 \\
+0 & 0.1
+\end{bmatrix}
+\]
+
+\[
+\mathbf{Q_k} =
+\begin{bmatrix}
+0.01 & 0.02 \\
+0.02 & 0.04
+\end{bmatrix}
+\]
+
+Now, solve for \(\mathbf{P_k^-}\):
+
+\[
+\mathbf{P_k^-} = \mathbf{A P_{k-1} A^T} + \mathbf{Q_k}
+\]
+
+\subsection*{Step-by-Step Matrix Multiplication}
+1. Compute \(\mathbf{A P_{k-1}}\):
+
+\[
+\mathbf{A P_{k-1}} =
+\begin{bmatrix}
+1 & \Delta t \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0.1 & 0 \\
+0 & 0.1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.1 & 0.1 \Delta t \\
+0 & 0.1
+\end{bmatrix}
+\]
+
+2. Compute \((\mathbf{A P_{k-1}}) \mathbf{A^T}\):
+
+\[
+\begin{bmatrix}
+0.1 & 0.1 \Delta t \\
+0 & 0.1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+\Delta t & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.1 + 0.1 \Delta t^2 & 0.1 \Delta t \\
+0.1 \Delta t & 0.1
+\end{bmatrix}
+\]
+
+3. Add \(\mathbf{Q_k}\) to the Result:
+
+\[
+\mathbf{P_k^-} =
+\begin{bmatrix}
+0.1 + 0.1 \Delta t^2 & 0.1 \Delta t \\
+0.1 \Delta t & 0.1
+\end{bmatrix}
++
+\begin{bmatrix}
+0.01 & 0.02 \\
+0.02 & 0.04
+\end{bmatrix}
+\]
+
+\[
+=
+\begin{bmatrix}
+0.11 + 0.1 \Delta t^2 & 0.1 \Delta t + 0.02 \\
+0.1 \Delta t + 0.02 & 0.14
+\end{bmatrix}
+\]
+
+Final Result:
+
+\[
+\mathbf{P_k^-} =
+\begin{bmatrix}
+0.11 + 0.1 \Delta t^2 & 0.1 \Delta t + 0.02 \\
+0.1 \Delta t + 0.02 & 0.14
+\end{bmatrix}
+\]
+
+\subsection*{Step 4: How Does \(\mathbf{P_k^-}\) Affect the Kalman Gain?}
+Once we compute \(\mathbf{P_k^-}\), it directly affects the Kalman Gain:
+
+\[
+\mathbf{K_k} =
+\mathbf{P_k^-} \mathbf{H}^T
+(\mathbf{H P_k^- H}^T + \mathbf{R})^{-1}
+\]
+
+\begin{itemize}
+    \item If \(\mathbf{P_k^-}\) is large, the Kalman Gain \(\mathbf{K_k}\) increases, meaning the filter trusts the measurement more.
+    \item If \(\mathbf{P_k^-}\) is small, the filter trusts its prediction more and ignores noisy measurements.
+\end{itemize}
+
+Thus, updating \(\mathbf{P_k^-}\) correctly is essential for the Kalman filter to balance between trusting the model and trusting sensor data.
+
+\subsection*{Step 5: Summary}
+\begin{itemize}
+    \item \(\mathbf{P_k^-}\) tracks our uncertainty in the predicted state.
+    \item We compute \(\mathbf{P_k^-}\) using \(\mathbf{A P_{k-1} A^T} + \mathbf{Q_k}\).
+    \item \(\mathbf{Q_k}\) ensures the filter accounts for unpredictable real-world changes.
+    \item A higher \(\mathbf{P_k^-}\) increases the Kalman Gain \(\mathbf{K_k}\), making the filter trust the sensor more.
+\end{itemize}
+
+
 
 
 
