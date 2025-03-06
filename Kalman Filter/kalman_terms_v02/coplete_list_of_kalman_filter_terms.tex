@@ -244,7 +244,7 @@ where:
 %*************************************************************************************************
 %*************************************************************************************************
 
-\section*{External Control Input (\(\mathbf{u_k}\))}
+\section{External Control Input (\(\mathbf{u_k}\))}
 
 \subsection*{Definition}
 The control input vector \(\mathbf{u_k}\) represents external forces or influences that actively change the system’s state.
@@ -593,7 +593,7 @@ These values prevent the filter from being overconfident while still keeping pre
 %*************************************************************************************************
 %*************************************************************************************************
 
-\section*{Understanding the Measurement Matrix \(\mathbf{H_k}\)}
+\section{Understanding the Measurement Matrix \(\mathbf{H_k}\)}
 
 \subsection{What is \(\mathbf{H_k}\)?}
 The measurement matrix \(\mathbf{H_k}\) defines how the system’s internal state is mapped to the measurements from a sensor. Since the Kalman filter tracks an entire state vector, but most sensors only measure part of that state, \(\mathbf{H_k}\) acts as a bridge between the state estimate and what is actually observed.
@@ -949,7 +949,145 @@ This means GPS errors are normally distributed around zero with a variance of 2.
 %*************************************************************************************************
 %*************************************************************************************************
 
+Here is a step-by-step ordered list of all the equations used in our car tracking example, following the prediction and update steps.
 
+\section{Define the State Model}
+We define the state vector as:
+\[
+\mathbf{x}_k =
+\begin{bmatrix}
+\text{position} \\
+\text{velocity}
+\end{bmatrix}
+\]
+
+\subsection{State Transition Equation (Prediction Model)}
+\[
+\mathbf{x}_k^- = \mathbf{A} \mathbf{x}_{k-1} + \mathbf{w}_k
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{x}_k^-$ is the predicted state (before measurement update),
+    \item $\mathbf{A}$ is the state transition matrix,
+    \item $\mathbf{w}_k \sim \mathcal{N}(0, \mathbf{Q}_k)$ is the process noise, randomly generated from $\mathbf{Q}_k$.
+\end{itemize}
+
+\subsection{State Transition Matrix}
+\[
+\mathbf{A}_k =
+\begin{bmatrix}
+1 & \Delta t \\
+0 & 1
+\end{bmatrix}
+\]
+where $\Delta t = 1$ sec (GPS updates every second).
+
+\subsection{Process Noise Covariance}
+\[
+\mathbf{Q}_k =
+\begin{bmatrix}
+q_{11} & q_{12} \\
+q_{21} & q_{22}
+\end{bmatrix}
+\]
+where $\mathbf{Q}_k$ is predefined based on estimated system uncertainty.
+
+\subsection{Predicted Covariance Equation}
+\[
+\mathbf{P}_k^- = \mathbf{A} \mathbf{P}_{k-1} \mathbf{A}^T + \mathbf{Q}_k
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{P}_k^-$ is the predicted uncertainty (error covariance),
+    \item $\mathbf{P}_{k-1}$ is the previous uncertainty,
+    \item $\mathbf{A}^T$ is the transpose of $\mathbf{A}$,
+    \item $\mathbf{Q}_k$ is the process noise covariance.
+\end{itemize}
+
+\section{Define the Measurement Model}
+Since the GPS only measures position, the measurement model is:
+\[
+\mathbf{y}_k = \mathbf{H} \mathbf{x}_k + \mathbf{v}_k
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{y}_k$ is the actual sensor measurement (position),
+    \item $\mathbf{H}$ is the measurement matrix,
+    \item $\mathbf{v}_k \sim \mathcal{N}(0, \mathbf{R}_k)$ is the measurement noise from $\mathbf{R}_k$.
+\end{itemize}
+
+\subsection{Measurement Matrix}
+\[
+\mathbf{H}_k =
+\begin{bmatrix}
+1 & 0
+\end{bmatrix}
+\]
+This extracts only the position from the state.
+
+\subsection{Measurement Noise Covariance}
+\[
+\mathbf{R}_k =
+\begin{bmatrix}
+r_{11}
+\end{bmatrix}
+\]
+where $\mathbf{R}_k$ is based on GPS noise (variance in meters).
+
+\section{Compute Kalman Gain}
+\[
+\mathbf{K}_k = \mathbf{P}_k^- \mathbf{H}^T (\mathbf{H} \mathbf{P}_k^- \mathbf{H}^T + \mathbf{R}_k)^{-1}
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{K}_k$ is the Kalman Gain (weighting factor for measurement update),
+    \item $\mathbf{P}_k^-$ is the predicted uncertainty,
+    \item $\mathbf{H}^T$ is the transpose of the measurement matrix,
+    \item $\mathbf{R}_k$ is the measurement noise covariance.
+\end{itemize}
+
+\section{Update the State Estimate}
+\[
+\mathbf{x}_k = \mathbf{x}_k^- + \mathbf{K}_k (\mathbf{y}_k - \mathbf{H} \mathbf{x}_k^-)
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{x}_k$ is the updated state estimate,
+    \item $(\mathbf{y}_k - \mathbf{H} \mathbf{x}_k^-)$ is the measurement residual (difference between actual and predicted position).
+\end{itemize}
+
+\section{Update the Error Covariance}
+\[
+\mathbf{P}_k = (\mathbf{I} - \mathbf{K}_k \mathbf{H}) \mathbf{P}_k^-
+\]
+where:
+\begin{itemize}
+    \item $\mathbf{P}_k$ is the updated uncertainty,
+    \item $\mathbf{I}$ is the identity matrix.
+\end{itemize}
+
+\section{Repeat for the Next Time Step}
+Use the new $\mathbf{x}_k$ and $\mathbf{P}_k$ as the starting values for the next iteration.
+
+\section{Summary of the Ordered Equations}
+
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+Step & Equation & Purpose \\
+\hline
+1 & $\mathbf{x}_k^- = \mathbf{A} \mathbf{x}_{k-1} + \mathbf{w}_k$ & Predict next state (before measurement update) \\
+\hline
+2 & $\mathbf{P}_k^- = \mathbf{A} \mathbf{P}_{k-1} \mathbf{A}^T + \mathbf{Q}_k$ & Predict uncertainty in the state \\
+\hline
+3 & $\mathbf{K}_k = \mathbf{P}_k^- \mathbf{H}^T (\mathbf{H} \mathbf{P}_k^- \mathbf{H}^T + \mathbf{R}_k)^{-1}$ & Compute Kalman Gain \\
+\hline
+4 & $\mathbf{x}_k = \mathbf{x}_k^- + \mathbf{K}_k (\mathbf{y}_k - \mathbf{H} \mathbf{x}_k^-)$ & Update state using measurement \\
+\hline
+5 & $\mathbf{P}_k = (\mathbf{I} - \mathbf{K}_k \mathbf{H}) \mathbf{P}_k^-$ & Update uncertainty in the estimate \\
+\hline
+\end{tabular}
+\end{center}
 
 
 
