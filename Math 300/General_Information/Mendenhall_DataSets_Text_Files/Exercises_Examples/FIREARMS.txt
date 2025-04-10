@@ -1,0 +1,8 @@
+FIREARM	PERCENT
+Shotgun	21
+Semi-auto Pistol	14
+Rifle	33
+Revolver	20
+Long Gun	6
+Handgun	5
+Some Other	1

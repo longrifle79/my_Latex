@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Background on the Kalman Filter}{2}{section.2}%
+\contentsline {section}{\numberline {3}Simulation of the Dynamic System}{3}{section.3}%
+\contentsline {section}{\numberline {4}Regression Model Building}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Data and Scatterplots}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}First-Order Main Effects Model}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Model with Interaction Terms}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Model Diagnostics and Multicollinearity}{6}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Interpretation of Results}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}First-Order Model}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Interaction Terms}{6}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Nested F-Test for Model Comparison}{7}{section.6}%
+\contentsline {section}{\numberline {7}Discussion and Practical Implications}{7}{section.7}%
+\contentsline {section}{\numberline {8}Future Work}{7}{section.8}%
+\contentsline {section}{\numberline {9}Conclusion}{8}{section.9}%
+\contentsline {section}{\numberline {10}Appendix: Simulation Code and Additional Diagnostics}{8}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Simulation Code}{8}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Additional Diagnostics}{8}{subsection.10.2}%
