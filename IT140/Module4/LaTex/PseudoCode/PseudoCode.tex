@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Define pseudocode style without line numbers or frame
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=none, % No line numbers
+    frame=none, % No frame
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    escapeinside={(*}{*)}, % Allows LaTeX commands inside listings
+    morekeywords={PRINT, WHILE, READ, IF, THEN, ELSE, ENDIF, SET, BREAK}
+}
+
+\begin{document}
+
+\begin{center}
+    Gary Hobson \\
+    IT 140 \\
+    Module 4-3: Pseudocode Revisited
+\end{center}
+
+\textbf{PseudoCode:}
+
+\begin{lstlisting}
+PRINT "Welcome to the higher/lower game, Bella!"
+
+// Step 1: Get lower and upper bounds with input validation
+WHILE true
+    READ lowerBound from user with prompt "Enter the lower bound: "
+    READ upperBound from user with prompt "Enter the upper bound: "
+    IF lowerBound < upperBound THEN
+        BREAK
+    ELSE
+        PRINT "The lower bound must be less than the upper bound."
+    ENDIF
+ENDWHILE
+
+
+// Step 2: Generate a random number between lowerBound and upperBound
+SET randomNumber to a random integer between lowerBound and upperBound inclusive
+
+// Step 3: Prompt user to guess a number with input validation and feedback
+PRINT "Great, now guess a number between " + lowerBound + " and " + upperBound + ": "
+WHILE true
+    READ guess from user with prompt ""
+    IF guess < lowerBound OR guess > upperBound THEN
+        PRINT "Please guess a number between " + lowerBound + " and " + upperBound + "."
+    ELSE IF guess < randomNumber THEN
+        PRINT "Nope, too low."
+        PRINT "Guess another number: "
+    ELSE IF guess > randomNumber THEN
+        PRINT "Nope, too high."
+        PRINT "Guess another number: "
+    ELSE
+        PRINT "You got it!"
+        BREAK
+    ENDIF
+ENDWHILE
+\end{lstlisting}
+
+\end{document}
