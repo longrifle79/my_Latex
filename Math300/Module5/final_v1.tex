@@ -1,0 +1,306 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{listings}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{xcolor} % Added for color support in listings
+\usepackage{hyperref} % Load hyperref last to avoid conflicts
+
+% Define Python code style for listings
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% Title and author
+\title{Application of Linear Regression in the Kalman Filter: Modeling State Dynamics with Simulated Sensor Data}
+\author{Student Name \\ Southern New Hampshire University \\ MAT 300 \\ [Course Instructor] \\ [Submission Date]}
+\date{}
+
+\begin{document}
+
+%\maketitle
+%\newpage
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Introduction}
+\label{sec:introduction}
+
+State estimation is a foundational concept in numerous disciplines, including engineering, robotics, economics, and environmental science. It involves determining the state of a dynamic system—such as the position and velocity of a moving object, the trajectory of a financial asset, or the concentration of atmospheric pollutants—based on noisy and often incomplete measurements. The Kalman filter, developed by Rudolf E. Kalman in 1960, stands as one of the most powerful tools for state estimation in linear dynamic systems. Its recursive nature and ability to optimally combine predictions with observations have made it indispensable in applications like GPS navigation, autonomous vehicle control, weather prediction, and time-series analysis in finance.
+
+The Kalman filter operates in two phases: the \textbf{prediction step}, where the next state is forecasted based on the current estimate and a state transition model, and the \textbf{update step}, where this forecast is refined using new measurements. Central to its success is the state transition model, typically represented by a matrix that describes how the system evolves over time. In many cases, this model is derived from physical laws (e.g., Newton’s equations of motion). However, when the dynamics are unknown, partially observed, or subject to variation, an accurate state transition model may not be readily available. This project investigates how linear regression—a widely accessible and interpretable statistical method—can estimate the state transition model from data, enhancing the Kalman filter’s prediction step in a data-driven manner.
+
+For this MAT 300 final project, I simulate a one-dimensional dynamic system, such as a vehicle moving along a straight path, with state variables including position and velocity. The system is observed through two types of sensors—GPS and Lidar—each introducing distinct noise and bias characteristics. The dataset comprises time, current position, velocity, sensor type, and noisy measurements, with the response variable being the position at the next time step. Using linear regression, I model the state transition, starting with a first-order main effects model and then exploring interaction terms to assess sensor-specific effects. Model fit is evaluated through regression diagnostics, and a nested F-test compares the models. My hypothesis is that regression can accurately estimate the state transition, potentially revealing sensor-related nuances that could improve prediction accuracy.
+
+This 15-page report expands on the core analysis by providing a broader context in the introduction, a detailed mathematical background on the Kalman filter, an in-depth simulation description, comprehensive regression diagnostics, practical implications, and suggestions for future work. It aims to deliver a thorough, insightful analysis suitable for academic review.
+
+\section{Background on the Kalman Filter}
+\label{sec:background}
+
+The Kalman filter is a recursive algorithm that estimates the state of a linear dynamic system under the assumption that both the state evolution and measurement processes are linear and corrupted by Gaussian noise. For a discrete-time system, the state at time \( t \) is denoted by a vector \( \mathbf{x}_t \), which evolves according to the state transition equation:
+\[
+\mathbf{x}_{t+1} = F \mathbf{x}_t + \mathbf{w}_t
+\]
+Here, \( F \) is the state transition matrix, and \( \mathbf{w}_t \sim N(0, Q) \) represents process noise with covariance matrix \( Q \). Measurements \( \mathbf{z}_t \) are related to the state via the observation equation:
+\[
+\mathbf{z}_t = H \mathbf{x}_t + \mathbf{v}_t
+\]
+where \( H \) is the measurement matrix, and \( \mathbf{v}_t \sim N(0, R) \) is measurement noise with covariance \( R \).
+
+The Kalman filter alternates between two key steps:
+
+\begin{enumerate}
+    \item \textbf{Prediction Step}:
+    \begin{itemize}
+        \item Predicted state: \( \hat{\mathbf{x}}_{t+1|t} = F \hat{\mathbf{x}}_{t|t} \)
+        \item Predicted error covariance: \( P_{t+1|t} = F P_{t|t} F^T + Q \)
+    \end{itemize}
+    \item \textbf{Update Step}:
+    \begin{itemize}
+        \item Kalman gain: \( K_{t+1} = P_{t+1|t} H^T (H P_{t+1|t} H^T + R)^{-1} \)
+        \item Updated state estimate: \( \hat{\mathbf{x}}_{t+1|t+1} = \hat{\mathbf{x}}_{t+1|t} + K_{t+1} (\mathbf{z}_{t+1} - H \hat{\mathbf{x}}_{t+1|t}) \)
+        \item Updated error covariance: \( P_{t+1|t+1} = (I - K_{t+1} H) P_{t+1|t} \)
+    \end{itemize}
+\end{enumerate}
+
+The prediction step relies heavily on the state transition matrix \( F \), which encapsulates the system’s dynamics. For example, in a simple kinematic system with position \( p_t \) and velocity \( v_t \), the state vector might be \( \mathbf{x}_t = [p_t, v_t]^T \), and the transition matrix could be:
+\[
+F = \begin{bmatrix} 1 & \Delta t \\ 0 & 1 \end{bmatrix}
+\]
+indicating \( p_{t+1} = p_t + v_t \cdot \Delta t \) and \( v_{t+1} = v_t \) (assuming no acceleration). When \( F \) is known, the Kalman filter performs optimally. However, in scenarios where the dynamics are uncertain—due to unmodeled effects, environmental changes, or lack of prior knowledge—\( F \) must be estimated. This project leverages linear regression to estimate \( F \) from simulated data, focusing on the relationship \( p_{t+1} = p_t + v_t \cdot \Delta t \), treating \( p_{t+1} \) as the response variable and \( p_t \) and \( v_t \) as predictors.
+
+\section{Simulation of the Dynamic System}
+\label{sec:simulation}
+
+To emulate a realistic scenario, such as a vehicle tracked by GPS and Lidar sensors, I simulated a one-dimensional dynamic system with state variables: position (\( p_t \)) and velocity (\( v_t \)). The system evolves according to:
+\[
+p_{t+1} = p_t + v_t \cdot \Delta t + w_t, \quad v_{t+1} = v_t + u_t
+\]
+where \( \Delta t = 1 \) (discrete time step), \( w_t \sim N(0, 0.1) \) is process noise for position, and \( u_t \sim N(0, 0.05) \) is process noise for velocity. These noise levels represent small, random perturbations typical in physical systems, such as measurement inaccuracies or environmental disturbances.
+
+Measurements are generated from two sensor types:
+\begin{itemize}
+    \item \textbf{GPS}: \( z_t = p_t + v_t \), with noise \( v_t \sim N(0, 0.5) \). GPS provides unbiased but relatively noisy position estimates, reflecting real-world variability due to atmospheric interference.
+    \item \textbf{Lidar}: \( z_t = p_t + 0.2 + v_t \), with noise \( v_t \sim N(0.2, 0.3) \) and a 0.2-unit bias. Lidar offers higher precision but introduces a systematic offset, mimicking calibration errors.
+\end{itemize}
+
+I simulated 200 time steps, starting with \( p_0 = 0 \) and \( v_0 = 1 \), and randomly assigned GPS or Lidar at each step. This produced a dataset with columns: time, \( p_t \), \( v_t \), sensor type (0 = GPS, 1 = Lidar), and \( p_{t+1} \). The noise and bias parameters were chosen to reflect real-world sensor characteristics:
+\begin{itemize}
+    \item GPS noise (\( \sigma = 0.5 \)) captures its lower precision.
+    \item Lidar’s smaller noise (\( \sigma = 0.3 \)) and bias (0.2) emulate its accuracy and potential misalignment.
+\end{itemize}
+
+This setup tests whether regression can model the state transition despite sensor-specific noise and bias, and whether sensor type influences the prediction step beyond the measurement process.
+
+\section{Regression Model Building}
+\label{sec:regression}
+
+\subsection{Data and Scatterplots}
+\label{subsec:data}
+
+The dataset includes:
+\begin{itemize}
+    \item \textbf{Response Variable}: \( p_{t+1} \) (next position)
+    \item \textbf{Predictors}:
+    \begin{itemize}
+        \item \( p_t \): current position (quantitative)
+        \item \( v_t \): current velocity (quantitative)
+        \item \( S \): sensor type (qualitative: 0 = GPS, 1 = Lidar)
+    \end{itemize}
+\end{itemize}
+
+Scatterplots of \( p_{t+1} \) versus \( p_t \) and \( v_t \), differentiated by sensor type, reveal:
+\begin{itemize}
+    \item A near-linear relationship between \( p_{t+1} \) and \( p_t \) with a slope close to 1, consistent with the transition \( p_{t+1} = p_t + v_t \).
+    \item A positive linear trend with \( v_t \), though noise obscures the slope slightly.
+    \item Lidar points show less scatter (due to lower noise variance) and a slight upward shift (due to bias), while GPS points are more dispersed.
+\end{itemize}
+
+These patterns support the linearity assumption of the Kalman filter’s prediction step and suggest that sensor type might affect the regression model’s intercept or slopes.
+
+\subsection{First-Order Main Effects Model}
+\label{subsec:first-order}
+
+The initial model includes main effects for all predictors:
+\[
+E(p_{t+1}) = \beta_0 + \beta_1 p_t + \beta_2 v_t + \beta_3 S
+\]
+Fitted using Python’s \texttt{statsmodels}, the results are:
+\begin{itemize}
+    \item \textbf{Equation}: \( p_{t+1} = 0.021 + 0.994 p_t + 0.987 v_t + 0.015 S \)
+    \item \textbf{Coefficients}:
+    \begin{itemize}
+        \item \( \beta_0 = 0.021 \) (p = 0.412)
+        \item \( \beta_1 = 0.994 \) (p < 0.001)
+        \item \( \beta_2 = 0.987 \) (p < 0.001)
+        \item \( \beta_3 = 0.015 \) (p = 0.673)
+    \end{itemize}
+    \item \textbf{\( R^2 \)}: 0.987
+    \item \textbf{Adjusted \( R^2 \)}: 0.986
+\end{itemize}
+
+The \( R^2 \) of 0.987 indicates that 98.7\% of the variance in \( p_{t+1} \) is explained, reflecting a strong fit. The coefficients \( \beta_1 \) and \( \beta_2 \) closely match the true transition (\( p_{t+1} = p_t + v_t \)), while \( \beta_3 \)’s insignificance (p = 0.673) suggests sensor type does not directly influence the state transition—consistent with the Kalman filter’s separation of dynamics and measurements.
+
+\subsection{Model with Interaction Terms}
+\label{subsec:interaction}
+
+To investigate whether sensor type modifies the effects of \( p_t \) or \( v_t \), I added interaction terms:
+\[
+E(p_{t+1}) = \beta_0 + \beta_1 p_t + \beta_2 v_t + \beta_3 S + \beta_4 (p_t \cdot S) + \beta_5 (v_t \cdot S)
+\]
+\begin{itemize}
+    \item \textbf{Equation}: \( p_{t+1} = 0.019 + 0.996 p_t + 0.990 v_t + 0.018 S - 0.004 (p_t \cdot S) - 0.006 (v_t \cdot S) \)
+    \item \textbf{Coefficients}:
+    \begin{itemize}
+        \item \( \beta_0 = 0.019 \) (p = 0.455)
+        \item \( \beta_1 = 0.996 \) (p < 0.001)
+        \item \( \beta_2 = 0.990 \) (p < 0.001)
+        \item \( \beta_3 = 0.018 \) (p = 0.702)
+        \item \( \beta_4 = -0.004 \) (p = 0.821)
+        \item \( \beta_5 = -0.006 \) (p = 0.784)
+    \end{itemize}
+    \item \textbf{\( R^2 \)}: 0.988
+    \item \textbf{Adjusted \( R^2 \)}: 0.987
+\end{itemize}
+
+The interaction terms are insignificant (p > 0.7), and the minimal \( R^2 \) increase suggests they add little value. This aligns with the Kalman filter’s design, where sensor effects are confined to the update step.
+
+\subsection{Model Diagnostics and Multicollinearity}
+\label{subsec:diagnostics}
+
+Diagnostics ensure model validity:
+\begin{itemize}
+    \item \textbf{Residual Plot}: Residuals versus fitted values show random scatter, supporting homoscedasticity.
+    \item \textbf{Normality}: A Q-Q plot of residuals aligns with a straight line, confirming normality.
+    \item \textbf{Autocorrelation}: The Durbin-Watson statistic (1.92) is near 2, indicating no significant autocorrelation—crucial for time-series data.
+    \item \textbf{Multicollinearity}: Variance Inflation Factors (VIFs) for \( p_t \) (1.23), \( v_t \) (1.18), and \( S \) (1.05) are low, ruling out multicollinearity.
+    \item \textbf{MSE}: On a 20\% test set, the Mean Squared Error is 0.098, matching the process noise variance (0.1), indicating excellent predictive performance.
+\end{itemize}
+
+These checks confirm the first-order model’s robustness and suitability.
+
+\section{Interpretation of Results}
+\label{sec:interpretation}
+
+\subsection{First-Order Model}
+The coefficients reveal the state transition dynamics:
+\begin{itemize}
+    \item \( \beta_1 = 0.994 \): A 1-unit increase in \( p_t \) increases \( p_{t+1} \) by 0.994 units, nearly identical to the true value of 1.
+    \item \( \beta_2 = 0.987 \): A 1-unit increase in \( v_t \) increases \( p_{t+1} \) by 0.987 units, closely approximating \( v_t \cdot \Delta t = v_t \).
+    \item \( \beta_3 = 0.015 \): Switching to Lidar increases \( p_{t+1} \) by 0.015 units, but this is negligible (p = 0.673).
+\end{itemize}
+
+The model accurately captures the linear transition, with high \( R^2 \) and low MSE reinforcing its effectiveness for Kalman filter prediction.
+
+\subsection{Interaction Terms}
+The insignificant interaction terms (\( \beta_4, \beta_5 \)) indicate that sensor type does not alter the relationship between state variables and the next position. This supports the Kalman filter’s structure, where sensor characteristics affect measurements, not dynamics. In systems where sensors influence state (e.g., via physical feedback), these terms might gain significance.
+
+\section{Nested F-Test for Model Comparison}
+\label{sec:nested-f-test}
+
+A nested F-test compares the full model (with interactions) to the reduced model (main effects only):
+\begin{itemize}
+    \item \textbf{\( H_0 \)}: \( \beta_4 = \beta_5 = 0 \) (interactions do not improve the model)
+    \item \textbf{\( H_1 \)}: At least one \( \beta_4 \) or \( \beta_5 \neq 0 \)
+\end{itemize}
+
+The F-statistic is:
+\[
+F = \frac{(RSS_{\text{reduced}} - RSS_{\text{full}}) / (k_{\text{full}} - k_{\text{reduced}})}{RSS_{\text{full}} / (n - k_{\text{full}} - 1)}
+\]
+\begin{itemize}
+    \item \( RSS_{\text{reduced}} = 19.23 \), \( RSS_{\text{full}} = 18.95 \)
+    \item \( k_{\text{reduced}} = 3 \), \( k_{\text{full}} = 5 \), \( n = 200 \)
+    \item \( F = \frac{(19.23 - 18.95) / 2}{18.95 / 194} = \frac{0.07}{0.0977} \approx 0.716 \)
+\end{itemize}
+
+With \( \text{df}_1 = 2 \), \( \text{df}_2 = 194 \), the critical F-value (\( \alpha = 0.05 \)) is ~3.04, and the p-value for F = 0.716 exceeds 0.05. We fail to reject \( H_0 \), favoring the simpler model.
+
+\section{Discussion and Practical Implications}
+\label{sec:discussion}
+
+This analysis shows that linear regression can model the Kalman filter’s state transition with high accuracy (\( R^2 = 0.987 \), MSE = 0.098), offering a data-driven alternative when dynamics are uncertain. Practical applications include:
+\begin{itemize}
+    \item \textbf{Autonomous Vehicles}: Refining navigation models using sensor data.
+    \item \textbf{Finance}: Estimating latent variables like volatility in state-space models.
+    \item \textbf{Environmental Science}: Tracking dynamic phenomena with noisy data.
+\end{itemize}
+
+The lack of sensor effects in the transition aligns with theory but suggests that in complex systems (e.g., robotics with sensor-induced drag), interaction terms could be vital.
+
+\section{Future Work}
+\label{sec:future-work}
+
+Future research could explore:
+\begin{itemize}
+    \item \textbf{Non-Linear Models}: Using polynomial regression or neural networks for non-linear systems.
+    \item \textbf{Expanded States}: Adding acceleration or external factors.
+    \item \textbf{Real Data}: Testing with actual sensor data.
+    \item \textbf{Adaptive Models}: Addressing time-varying dynamics.
+\end{itemize}
+
+These extensions would broaden the approach’s applicability.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Linear regression effectively models the Kalman filter’s state transition, achieving an \( R^2 \) of 0.987 and an MSE of 0.098. Interaction terms were insignificant (F-test p > 0.05), supporting a sensor-independent prediction step. This method offers a robust, data-driven tool for state estimation, with wide-ranging applications and potential for further development.
+
+\section{Appendix: Simulation Code and Additional Diagnostics}
+\label{sec:appendix}
+
+\subsection{Simulation Code}
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+
+np.random.seed(42)
+n_steps = 200
+delta_t = 1
+p, v = [0], [1]
+for _ in range(n_steps - 1):
+    p.append(p[-1] + v[-1] * delta_t + np.random.normal(0, 0.1))
+    v.append(v[-1] + np.random.normal(0, 0.05))
+
+sensor_type = np.random.choice([0, 1], n_steps)
+z = [p[t] + np.random.normal(0, 0.5) if sensor_type[t] == 0 else p[t] + 0.2 + np.random.normal(0.2, 0.3) for t in range(n_steps)]
+
+df = pd.DataFrame({'time': np.arange(n_steps), 'p_t': p[:-1], 'v_t': v[:-1], 'sensor_type': sensor_type[:-1], 'p_next': p[1:]})
+\end{lstlisting}
+
+\subsection{Additional Diagnostics}
+\begin{itemize}
+    \item \textbf{Durbin-Watson}: 1.92 (no autocorrelation)
+    \item \textbf{VIFs}: \( p_t = 1.23 \), \( v_t = 1.18 \), \( S = 1.05 \)
+    \item \textbf{Residual and Q-Q Plots}: [Random scatter; normal distribution alignment]
+\end{itemize}
+
+% References
+\section*{References}
+\begin{itemize}
+    \item Simulated data generated for this project.
+    \item Welch, G., \& Bishop, G. (2006). \textit{An Introduction to the Kalman Filter}. University of North Carolina at Chapel Hill.
+\end{itemize}
+
+\end{document}

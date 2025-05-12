@@ -1,4 +1,0 @@
-SUBSCRIBE	NUMBER
-Never	180
-Cable TV	1521
-Cord Cutter	300

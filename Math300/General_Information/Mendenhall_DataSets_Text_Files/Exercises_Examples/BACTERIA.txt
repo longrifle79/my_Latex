@@ -1,0 +1,16 @@
+HShake	High5	FBump	CONTACT	NUMBER
+131	44	15	HShake	131
+74	70	14	HShake	74
+129	69	21	HShake	129
+96	43	29	HShake	96
+92	53	21	HShake	92
+			High5	44
+			High5	70
+			High5	69
+			High5	43
+			High5	53
+			FBump	15
+			FBump	14
+			FBump	21
+			FBump	29
+			FBump	21

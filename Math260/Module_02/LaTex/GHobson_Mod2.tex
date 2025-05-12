@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\begin{document}
+
+
+\begin{center}
+    \textbf{Gary Hobson}\\
+    \textbf{Southern New Hampshire University} \\
+    \textbf{May 12, 2024} \\
+    \textbf{Module 2: Problem Set} \\
+\end{center}
+
+
+\[
+5x + 2 \equiv 3x - 7 \pmod{31}
+\]
+
+
+
+\begin{itemize}
+    \item Subtract \( 3x \) from both sides:
+    \[
+    (5x - 3x) + 2 \equiv -7 \pmod{31}
+    \]
+    \[
+    2x + 2 \equiv -7 \pmod{31}
+    \]
+
+    \item Subtract 2 from both sides:
+    \[
+    2x \equiv -9 \pmod{31}
+    \]
+
+    \item Since \( -9 \mod 31 = 22 \), we rewrite:
+    \[
+    2x \equiv 22 \pmod{31}
+    \]
+
+    \item Multiply both sides by the modular inverse of 2 modulo 31. \\
+    The inverse of 2 modulo 31 is 16, because:
+    \[
+    2 \times 16 = 32 \equiv 1 \pmod{31}
+    \]
+
+    So:
+    \[
+    x \equiv 16 \times 22 = 352 \equiv 11 \pmod{31}
+    \]
+\end{itemize}
+
+\textbf{Final Answer:}
+\[
+x \equiv 11 \pmod{31}
+\]
+
+\end{document}
