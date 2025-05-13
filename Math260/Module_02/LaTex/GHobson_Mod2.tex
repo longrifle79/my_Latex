@@ -55,4 +55,99 @@
 x \equiv 11 \pmod{31}
 \]
 
+
+
+\section*{16}
+
+Solve the system of congruences:
+\[
+\begin{cases}
+x \equiv 3 \pmod{5} \\
+x \equiv 9 \pmod{11}
+\end{cases}
+\]
+
+\textbf{Step 1: Verify that the moduli are coprime.} \\
+Since 5 and 11 are both prime numbers, they are coprime. This satisfies the condition for applying the Chinese Remainder Theorem, which guarantees a unique solution modulo the product of the moduli.
+
+\textbf{Step 2: Compute the product of the moduli.} \\
+\[
+N = 5 \times 11 = 55
+\]
+
+\textbf{Step 3: Compute the individual terms.} \\
+For modulus 5:
+\[
+N_1 = \frac{N}{5} = \frac{55}{5} = 11
+\]
+Find the inverse of \( N_1 \) modulo 5, i.e., find \( M_1 \) such that:
+\[
+11 \times M_1 \equiv 1 \pmod{5}
+\]
+Since \( 11 \mod 5 = 1 \), we have:
+\[
+M_1 = 1
+\]
+
+For modulus 11:
+\[
+N_2 = \frac{N}{11} = \frac{55}{11} = 5
+\]
+Find the inverse of \( N_2 \) modulo 11, i.e., find \( M_2 \) such that:
+\[
+5 \times M_2 \equiv 1 \pmod{11}
+\]
+Since \( 5 \times 9 = 45 \equiv 1 \pmod{11} \), we have:
+\[
+M_2 = 9
+\]
+
+\textbf{Step 4: Compute the solution.} \\
+\[
+x = (3 \times N_1 \times M_1) + (9 \times N_2 \times M_2) \mod N
+\]
+\[
+x = (3 \times 11 \times 1) + (9 \times 5 \times 9) \mod 55
+\]
+\[
+x = 33 + 405 \mod 55
+\]
+\[
+x = 438 \mod 55
+\]
+
+\textbf{Step 5: Reduce modulo 55.} \\
+\[
+438 \div 55 = 7 \text{ with a remainder of } 53
+\]
+\[
+x \equiv 53 \pmod{55}
+\]
+
+\textbf{Final Answer:} \\
+\[
+x \equiv 53 \pmod{55}
+\]
+
+
+\newpage
+
+
+\section*{24}
+\[
+3, 9, 8, 7, 6, 5, 4, 3, 2, 1
+\]
+
+Compute the alternating sum:
+\[
+3 - 9 + 8 - 7 + 6 - 5 + 4 - 3 + 2 - 1 = -2
+\]
+
+Now reduce \( -2 \mod 11 \):
+\[
+-2 \mod 11 = 9
+\]
+
+
+
 \end{document}
