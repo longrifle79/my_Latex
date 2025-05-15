@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{array}
+
+\begin{document}
+
+Consider the recurrence relation:
+\[
+x_{n+2} = c_0 x_n + c_1 x_{n+1} \mod 3
+\]
+
+Let's write the equations using the given values in the following table:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|l|}
+\hline
+\( n \) & \( x_n \) & \( x_{n+1} \) & \( x_{n+2} \) & Equation \\
+\hline
+0 & 1 & 1 & 0 & \( 0 = c_0 (1) + c_1 (1) \pmod{3} \) \\
+1 & 1 & 0 & 2 & \( 2 = c_0 (1) + c_1 (0) \pmod{3} \) \\
+\hline
+\end{tabular}
+\end{center}
+
+From the table, we obtain the system of congruences:
+\[
+\begin{cases}
+c_0 + c_1 \equiv 0 \pmod{3} \\
+c_0 \equiv 2 \pmod{3}
+\end{cases}
+\]
+
+\textbf{Step 2: Solve the system} \\
+From the second congruence:
+\[
+c_0 = 2
+\]
+Substitute \( c_0 = 2 \) into the first congruence:
+\[
+2 + c_1 \equiv 0 \pmod{3} \quad \Rightarrow \quad c_1 \equiv -2 \equiv 1 \pmod{3}
+\]
+
+\textbf{Final Answer:} \\
+\[
+c_0 = 2, \quad c_1 = 1 \pmod{3}
+\]
+
+\end{document}
