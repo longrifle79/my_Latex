@@ -1,30 +1,12 @@
-#!/usr/bin/env python
-# coding: utf-8
+#Gary Hobson
+# Southern New Hampshire University
+# IT140 Module 2
 
-# In[3]:
-
-
+# ask for name and age
 user_name = input('What is your name? ')  
 user_age = int(input('How old are you? '))  
-current_year = 2025
+current_year = 2025 # assuming the current year is 2025
+# Calculate the year of birth
 birth_year = current_year - user_age
-print(f'Hello {user_name}! You were born in {birth_year}.')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+# Print the result
+print(f'Hello {user_name}! You were boorn in {birth_year}.')
