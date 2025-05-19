@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{array}
+
+\begin{document}
+
+
+
+
+\section*{Gary Hobson}
+\section*{Module 3 Homework} 
+\section*{May 19, 2023}
+\newpage
+
+\section*{5.4 - 5   }
+\[
+x_{n+2} = c_0 x_n + c_1 x_{n+1} \pmod{3}
+\]
+this gives:
+\[
+1, 1, 0, 2, 2, 0, 1, 1
+\]
+% We need to find coefficients \( c_0 \) and \( c_1 \) that satisfy the recurrence.
+
+% \textbf{Step 1: Write out the recurrence equations} \\
+% From the sequence, each element from the third onward (index 2) satisfies:
+% \[
+% x_{n+2} = c_0 x_n + c_1 x_{n+1} \pmod{3}
+% \]
+% Let's write the equations using actual values:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|l|}
+\hline
+\( n \) & \( x_n \) & \( x_{n+1} \) & \( x_{n+2} \) & Equation \\
+\hline
+0 & 1 & 1 & 0 & \( 0 = c_0 (1) + c_1 (1) \pmod{3} \) \\
+1 & 1 & 0 & 2 & \( 2 = c_0 (1) + c_1 (0) \pmod{3} \) \\
+\hline
+\end{tabular}
+\end{center}
+
+% This gives the system:
+\[
+c_0 + c_1 \equiv 0 \pmod{3}
+\]
+\[
+c_0 \equiv 2 \pmod{3}
+\]
+
+% \textbf{Solve the system} \\
+So,
+\[
+c_0 = 2
+\]
+Substitute,
+\[
+2 + c_1 \equiv 0 \pmod{3} \quad \Rightarrow \quad c_1 \equiv -2 \equiv 1 \pmod{3}
+\]
+
+%\textbf{Final Answer:} \\
+\[
+c_0 = 2, \quad c_1 = 1 \pmod{3}
+\]
+
+% \textbf{Matrix Form (optional, if required)} \\
+% Set up the matrix equation from the first two equations:
+% \[
+% \begin{bmatrix}
+% 1 & 1 \\
+% 1 & 0
+% \end{bmatrix}
+% \begin{bmatrix}
+% c_0 \\
+% c_1
+% \end{bmatrix}
+% =
+% \begin{bmatrix}
+% 0 \\
+% 2
+% \end{bmatrix}
+% \pmod{3}
+% \]
+% Solving this system (as we did above) gives:
+% \[
+% c_0 = 2, \quad c_1 = 1
+% \]
+
+
+\newpage
+
+\section*{6.6 - 2}
+
+
+\newpage
+
+\section*{6.6 - 6}
+
+
+\newpage
+
+\section*{6.6 - 8}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
