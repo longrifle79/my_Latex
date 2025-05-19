@@ -1,8 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1747682349.70382 "/home/gary/Desktop/SNHU/my_Latex/Math260/Module_03/LaTex/GHobson_Mod3.tex" "GHobson_Mod3.pdf" "GHobson_Mod3" 1747682350.00815 0
+["pdflatex"] 1747685291.64871 "/home/gary/Desktop/SNHU/my_Latex/Math260/Module_03/LaTex/GHobson_Mod3.tex" "GHobson_Mod3.pdf" "GHobson_Mod3" 1747685291.9549 0
   "/etc/texmf/web2c/texmf.cnf" 1738885753.84619 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gary/Desktop/SNHU/my_Latex/Math260/Module_03/LaTex/GHobson_Mod3.tex" 1747682349.5096 1703 b56fda6274942f9dfdd650f0a6ce9ac6 ""
+  "/home/gary/Desktop/SNHU/my_Latex/Math260/Module_03/LaTex/GHobson_Mod3.tex" 1747685291.44496 5601 32dafaf80e1a426331e2f257424954ec ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -18,6 +19,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -34,11 +36,13 @@
   "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1704491087 30006 57b07afb710ee2f649c65cfbafda39c1 ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty" 1698869629 12667 e4b5eb11e4b7239e6c8a52bbe074a6c6 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
+  "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1636152094 2900 1537cc8184ad1792082cd229ecc269f4 ""
+  "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb" 1738885768.39548 136101 f533469f523533d38317ab5729d00c8a ""
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1744150392.92939 5349306 5bebe4c4513170eb7b91d5de73269dde ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1744150438 6837826 d12610d2f831ede0d7500ca56a25aae0 ""
-  "GHobson_Mod3.aux" 1747682349.97561 32 2d1df76398b3c48c6419a45a7331db2d "pdflatex"
-  "GHobson_Mod3.tex" 1747682349.5096 1703 b56fda6274942f9dfdd650f0a6ce9ac6 ""
+  "GHobson_Mod3.aux" 1747685291.91997 32 77e0dffd05b653a64f0caf3eb9bb454a "pdflatex"
+  "GHobson_Mod3.tex" 1747685291.44496 5601 32dafaf80e1a426331e2f257424954ec ""
   (generated)
   "GHobson_Mod3.aux"
   "GHobson_Mod3.log"

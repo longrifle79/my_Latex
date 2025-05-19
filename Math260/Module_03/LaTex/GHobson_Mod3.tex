@@ -93,15 +93,204 @@ c_0 = 2, \quad c_1 = 1 \pmod{3}
 \section*{6.6 - 2}
 
 
+\[
+\det(A) = (1)(1) - (1)(1) = 0
+\]
+So,
+\[
+\det(A) \equiv 0 \pmod{26}
+\]
+
+% \textbf{Step 2: Check invertibility} \\
+If \( \det(A) \equiv 0 \pmod{26} \), then:
+\[
+\gcd(0, 26) = 26 \neq 1
+\]
+Since the GCD is not 1, the matrix is not invertible modulo 26.
+
+So, decryption is impossible.
+
+%The matrix is not suitable because its determinant is \( 0 \pmod{26} \), so it is not invertible and cannot be used for decryption in the Hill cipher.
+
+
+
 \newpage
 
 \section*{6.6 - 6}
+
+% To recover the encryption matrix \( M \), the attacker selects three plaintext blocks of size 3. These should be linearly independent vectors.
+
+% A simple and effective choice for the plaintext vectors is:
+\begin{itemize}
+    \item \( \text{aaa} \rightarrow \) vector \( (0, 0, 0) \)
+    \item \( \text{baa} \rightarrow \) vector \( (1, 0, 0) \)
+    \item \( \text{aba} \rightarrow \) vector \( (0, 1, 0) \)
+    \item \( \text{aab} \rightarrow \) vector \( (0, 0, 1) \)
+\end{itemize}
+
+The last three are needed to form a \( 3 \times 3 \) identity matrix when stacked:
+\[
+P = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\]
+
+Then, the corresponding ciphertext blocks will become the rows of the matrix \( M \):
+\[
+C = \begin{bmatrix}
+? & ? & ? \\
+? & ? & ? \\
+? & ? & ?
+\end{bmatrix}
+\quad \Rightarrow \quad M = C
+\]
+
+% \textbf{Summary of Steps} \\
+Choose three plaintexts:
+\[
+\text{"baa", "aba", "aab"} \rightarrow \text{these convert to vectors } (1,0,0), (0,1,0), \text{ and } (0,0,1).
+\]
+Encrypt each using the unknown Hill cipher. \\
+Stack the resulting ciphertexts as rows to obtain the matrix \( M \).
+
+
+
 
 
 \newpage
 
 \section*{6.6 - 8}
 
+
+
+\[
+M = \begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix} \pmod{26}
+\]
+Let \( P = \begin{pmatrix} a \\ b \end{pmatrix} \) be a plaintext vector. Encryption is:
+\[
+C = M \cdot P \pmod{26}
+\]
+Find two vectors \( P_1 \neq P_2 \) such that:
+\[
+M \cdot P_1 \equiv M \cdot P_2 \pmod{26}
+\]
+This implies:
+\[
+M \cdot (P_1 - P_2) \equiv 0 \pmod{26}
+\]
+Let's try:
+\[
+P_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad P_2 = \begin{pmatrix} 14 \\ 13 \end{pmatrix}
+\]
+Compute:
+\[
+M \cdot P_1 = \begin{pmatrix}
+1 \cdot 1 + 2 \cdot 1 \\
+3 \cdot 1 + 4 \cdot 1
+\end{pmatrix}
+= \begin{pmatrix}
+3 \\
+7
+\end{pmatrix}
+\]
+\[
+M \cdot P_2 = \begin{pmatrix}
+1 \cdot 14 + 2 \cdot 13 \\
+3 \cdot 14 + 4 \cdot 13
+\end{pmatrix}
+= \begin{pmatrix}
+14 + 26 \\
+42 + 52
+\end{pmatrix}
+= \begin{pmatrix}
+40 \\
+94
+\end{pmatrix}
+\pmod{26}
+= \begin{pmatrix}
+40 \mod 26 \\
+94 \mod 26
+\end{pmatrix}
+= \begin{pmatrix}
+14 \\
+16
+\end{pmatrix}
+\]
+Since these are not equal, let's try a simpler approach.
+
+Compute the null space (kernel) of \( M \) modulo 26. That is, find \( v = \begin{pmatrix} x \\ y \end{pmatrix} \) such that:
+\[
+M \cdot v \equiv 0 \pmod{26} \quad \Rightarrow \quad
+\begin{cases}
+x + 2y \equiv 0 \pmod{26} \\
+3x + 4y \equiv 0 \pmod{26}
+\end{cases}
+\]
+Solve: \\
+From the first equation:
+\[
+x \equiv -2y \pmod{26}
+\]
+Substitute into the second:
+\[
+3(-2y) + 4y \equiv -6y + 4y = -2y \equiv 0 \pmod{26} \quad \Rightarrow \quad y \equiv 0 \pmod{13}
+\]
+Try \( y = 13 \), then:
+\[
+x = -2 \cdot 13 = -26 \equiv 0 \pmod{26}
+\]
+Thus, \( v = \begin{pmatrix} 0 \\ 13 \end{pmatrix} \).
+
+For any plaintext \( P \), \( P + v \) will encrypt to the same ciphertext. Let's test this: \\
+Let:
+\[
+P_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}
+\]
+Then:
+\[
+P_2 = \begin{pmatrix} 1 \\ 2 + 13 \end{pmatrix} = \begin{pmatrix} 1 \\ 15 \end{pmatrix}
+\]
+Compute:
+\[
+M \cdot P_1 = \begin{pmatrix}
+1 \cdot 1 + 2 \cdot 2 \\
+3 \cdot 1 + 4 \cdot 2
+\end{pmatrix}
+= \begin{pmatrix}
+1 + 4 \\
+3 + 8
+\end{pmatrix}
+= \begin{pmatrix}
+5 \\
+11
+\end{pmatrix}
+\]
+\[
+M \cdot P_2 = \begin{pmatrix}
+1 \cdot 1 + 2 \cdot 15 \\
+3 \cdot 1 + 4 \cdot 15
+\end{pmatrix}
+= \begin{pmatrix}
+1 + 30 \\
+3 + 60
+\end{pmatrix}
+= \begin{pmatrix}
+31 \\
+63
+\end{pmatrix}
+\pmod{26}
+= \begin{pmatrix}
+5 \\
+11
+\end{pmatrix}
+\]
+
+\textbf{Confirmed:} \( P_1 = (1, 2) \) and \( P_2 = (1, 15) \) encrypt to the same ciphertext.
 
 
 
