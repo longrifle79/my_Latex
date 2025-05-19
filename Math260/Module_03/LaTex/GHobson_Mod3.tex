@@ -166,135 +166,100 @@ Stack the resulting ciphertexts as rows to obtain the matrix \( M \).
 
 
 \[
-M = \begin{pmatrix}
+M = \begin{bmatrix}
 1 & 2 \\
 3 & 4
-\end{pmatrix} \pmod{26}
+\end{bmatrix} \pmod{26}
 \]
-Let \( P = \begin{pmatrix} a \\ b \end{pmatrix} \) be a plaintext vector. Encryption is:
+%To find two plaintext vectors \( P_1 \neq P_2 \) that encrypt to the same ciphertext, we solve:
 \[
-C = M \cdot P \pmod{26}
+M \cdot P_1 \equiv M \cdot P_2 \pmod{26} \quad \Rightarrow \quad M \cdot (P_1 - P_2) \equiv 0 \pmod{26}
 \]
-Find two vectors \( P_1 \neq P_2 \) such that:
-\[
-M \cdot P_1 \equiv M \cdot P_2 \pmod{26}
-\]
-This implies:
-\[
-M \cdot (P_1 - P_2) \equiv 0 \pmod{26}
-\]
-Let's try:
-\[
-P_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad P_2 = \begin{pmatrix} 14 \\ 13 \end{pmatrix}
-\]
-Compute:
-\[
-M \cdot P_1 = \begin{pmatrix}
-1 \cdot 1 + 2 \cdot 1 \\
-3 \cdot 1 + 4 \cdot 1
-\end{pmatrix}
-= \begin{pmatrix}
-3 \\
-7
-\end{pmatrix}
-\]
-\[
-M \cdot P_2 = \begin{pmatrix}
-1 \cdot 14 + 2 \cdot 13 \\
-3 \cdot 14 + 4 \cdot 13
-\end{pmatrix}
-= \begin{pmatrix}
-14 + 26 \\
-42 + 52
-\end{pmatrix}
-= \begin{pmatrix}
-40 \\
-94
-\end{pmatrix}
-\pmod{26}
-= \begin{pmatrix}
-40 \mod 26 \\
-94 \mod 26
-\end{pmatrix}
-= \begin{pmatrix}
-14 \\
-16
-\end{pmatrix}
-\]
-Since these are not equal, let's try a simpler approach.
+%This means we are looking for a nonzero vector \( v = P_1 - P_2 \) in the null space of \( M \pmod{26} \).
 
-Compute the null space (kernel) of \( M \) modulo 26. That is, find \( v = \begin{pmatrix} x \\ y \end{pmatrix} \) such that:
+Set \( v = \begin{bmatrix} x \\ y \end{bmatrix} \), and solve:
 \[
-M \cdot v \equiv 0 \pmod{26} \quad \Rightarrow \quad
-\begin{cases}
-x + 2y \equiv 0 \pmod{26} \\
-3x + 4y \equiv 0 \pmod{26}
-\end{cases}
+M \cdot v = \begin{bmatrix}
+x + 2y \\
+3x + 4y
+\end{bmatrix}
+\equiv
+\begin{bmatrix}
+0 \\
+0
+\end{bmatrix}
+\pmod{26}
 \]
-Solve: \\
-From the first equation:
+So,
 \[
 x \equiv -2y \pmod{26}
 \]
-Substitute into the second:
+Substitute
 \[
-3(-2y) + 4y \equiv -6y + 4y = -2y \equiv 0 \pmod{26} \quad \Rightarrow \quad y \equiv 0 \pmod{13}
+3(-2y) + 4y = -6y + 4y = -2y \equiv 0 \pmod{26} \quad \Rightarrow \quad y \equiv 0 \pmod{13}
 \]
 Try \( y = 13 \), then:
 \[
-x = -2 \cdot 13 = -26 \equiv 0 \pmod{26}
+x = -2y = -2 \cdot 13 = -26 \equiv 0 \pmod{26}
 \]
-Thus, \( v = \begin{pmatrix} 0 \\ 13 \end{pmatrix} \).
+So:
+\[
+v = \begin{bmatrix}
+0 \\
+13
+\end{bmatrix}
+\]
+So, for any plaintext \( P \), \( P + v \) will encrypt to the same ciphertext.
 
-For any plaintext \( P \), \( P + v \) will encrypt to the same ciphertext. Let's test this: \\
+%\textbf{Example:} \\
 Let:
 \[
-P_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}
+P_1 = \begin{bmatrix}
+1 \\
+2
+\end{bmatrix}, \quad
+P_2 = \begin{bmatrix}
+1 \\
+15
+\end{bmatrix}
 \]
-Then:
+Compute the ciphertexts:
 \[
-P_2 = \begin{pmatrix} 1 \\ 2 + 13 \end{pmatrix} = \begin{pmatrix} 1 \\ 15 \end{pmatrix}
-\]
-Compute:
-\[
-M \cdot P_1 = \begin{pmatrix}
+M \cdot P_1 = \begin{bmatrix}
 1 \cdot 1 + 2 \cdot 2 \\
 3 \cdot 1 + 4 \cdot 2
-\end{pmatrix}
-= \begin{pmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 1 + 4 \\
 3 + 8
-\end{pmatrix}
-= \begin{pmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 5 \\
 11
-\end{pmatrix}
+\end{bmatrix}
 \]
 \[
-M \cdot P_2 = \begin{pmatrix}
+M \cdot P_2 = \begin{bmatrix}
 1 \cdot 1 + 2 \cdot 15 \\
 3 \cdot 1 + 4 \cdot 15
-\end{pmatrix}
-= \begin{pmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 1 + 30 \\
 3 + 60
-\end{pmatrix}
-= \begin{pmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 31 \\
 63
-\end{pmatrix}
-\pmod{26}
-= \begin{pmatrix}
+\end{bmatrix}
+\equiv
+\begin{bmatrix}
 5 \\
 11
-\end{pmatrix}
+\end{bmatrix}
+\pmod{26}
 \]
 
-\textbf{Confirmed:} \( P_1 = (1, 2) \) and \( P_2 = (1, 15) \) encrypt to the same ciphertext.
-
-
-
-
+\textbf{So,} \( P_1 = (1, 2) \) and \( P_2 = (1, 15) \) encrypt to the same ciphertext under matrix \( M \pmod{26} \).
 
 
 
