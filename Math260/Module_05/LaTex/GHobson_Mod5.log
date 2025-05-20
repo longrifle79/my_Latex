@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  19 MAY 2025 17:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  20 MAY 2025 10:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/gary/Desktop/SNHU/my_Latex/Math260/Module_05/LaTex/GHobson_Mod2.tex
-(/home/gary/Desktop/SNHU/my_Latex/Math260/Module_05/LaTex/GHobson_Mod2.tex
+**/home/gary/Desktop/SNHU/my_Latex/Math260/Module_05/LaTex/GHobson_Mod5.tex
+(/home/gary/Desktop/SNHU/my_Latex/Math260/Module_05/LaTex/GHobson_Mod5.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -95,8 +95,8 @@ LaTeX Info: Redefining \] on input line 2954.
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count273
 \l__pdf_internal_box=\box53
-) (./GHobson_Mod2.aux)
-\openout1 = `GHobson_Mod2.aux'.
+) (./GHobson_Mod5.aux)
+\openout1 = `GHobson_Mod5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -119,7 +119,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./GHobson_Mod2.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./GHobson_Mod5.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -134,7 +134,7 @@ Here is how much of TeX's memory you used:
  59 hyphenation exceptions out of 8191
  56i,5n,65p,265b,113s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on GHobson_Mod2.pdf (1 page, 47534 bytes).
+Output written on GHobson_Mod5.pdf (1 page, 47534 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
