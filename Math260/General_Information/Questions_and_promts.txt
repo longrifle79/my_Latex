@@ -1,0 +1,179 @@
+this is exercise XXX from section 3.13 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+
+
+This is exercise XXX from section 3.14 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This is supposed to be solved using MATLAB
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+       ________________
+      /  ____________    / 
+     /  /                     /  /
+    /  /                     /  /
+   /  /____________/  /             
+  /  ______________/                 
+ /  /                                      
+/_/                                         
+
+
+
+**************************************************************************************************************************
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+
+this is exercise 4 from section 7.7 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+
+4. Nelson produces budget encryption machines for people who
+cannot afford a full-scale version of DES. The encryption consists
+of one round of a Feistel system. The plaintext has 64 bits and is
+divided into a left half L and a right half R. The encryption uses a
+function f (R) that takes an input string of 32 bits and outputs a
+string of 32 bits. (There is no key; anyone naive enough to buy this
+system should not be trusted to choose a key.) The left half of the
+ciphertext is C0 = R and the right half is C1 = L ⊕ f (R).
+Suppose Alice uses one of these machines to encrypt and send a
+message to Bob. Bob has an identical machine. How does he use
+the machine to decrypt the ciphertext he receives? Show that this
+decryption works (do not quote results about Feistel systems; you
+are essentially justifying that a special case works).
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+**************************************************************************************************************************
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+
+this is exercise 6 from section 7.7 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+6. Alice uses quadruple DES encryption. To save time, she chooses
+two keys, K1 and K2, and encrypts via
+c = EK (EK (EK (EK (m)))). One day, Alice chooses K1 to
+1
+1
+2
+2
+be the key of all 1s and K2 to be the key of all 0s. Eve is planning
+to do a meet-in-the-middle attack, but after examining a few
+plaintext–ciphertext pairs, she decides that she does not need to
+carry out this attack. Why? (Hint: Look at Exercise 5.)
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+**************************************************************************************************************************
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+
+this is exercise 7 from section 7.7 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+7. For a string of bits S , let S denote the complementary string
+obtained by changing all the 1s to 0s and all the 0s to 1s
+(equivalently, S = S ⊕ 11111 …). Show that if the DES key K
+encrypts P to C , then K encrypts P to C . (Hint: This has
+nothing to do with the structure of the S-boxes. To do the problem,
+just work through the encryption algorithm and show that the
+input to the S-boxes is the same for both encryptions. A key point
+is that the expansion of C is the complementary string for the
+expansion of C .)
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+
+
+
+pdftk Introduction_to_Cryptography_with_Coding_Theory.pdf cat 1-1286 Introduction_to_Cryptography_with_Coding_Theory_FIXED.pdf
+
+
+**************************************************************************************************************************
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+
+
+This is exercise 2 from section 8.5 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This is supposed to be solved using MATLAB
+
+
+2. Suppose the key for round 0 in AES consists of 128 bits, each of
+which is 1.
+1. Show that the key for the first round is
+W (4), W (5), W (6), W (7), where
+00010111
+00010110
+W (5) = W (7) =
+,
+00010110
+00010110
+11101000
+11101001
+W (4) = W (6) =
+.
+11101001
+11101001
+Note that W (5) = W (4) = the complement of W (5)
+(the complement can be obtained by XORing with a
+string of all 1s).
+2. Show that W (10) = W (8) and that W (11) = W (9)
+(Hints: W (5) ⊕ W (6) is a string of all 1s. Also, the
+relation A ⊕ B = A ⊕ B might be useful.)
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+**************************************************************************************************************************
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+This is exercise 6 from section 8.5 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This is supposed to be solved using MATLAB
+
+
+6. Your friend builds a very powerful computer that uses brute force
+to find a 56-bit DES key in 1 hour, so you make an even better
+machine that can try 256 AES keys in 1 second. How long will this
+machine take to try all 2128 AES keys?
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
