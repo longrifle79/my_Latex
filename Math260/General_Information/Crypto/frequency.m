@@ -10,5 +10,5 @@ for k=0:25,
    v=(txt==ychar(k+1,1));   %perform check to see 
    yct(k+1)=sum(v);
    ydisp=[ychar(k+1), '  ',num2str(yct(k+1))];
-   %disp(ydisp)
+   disp(ydisp)
 end;
