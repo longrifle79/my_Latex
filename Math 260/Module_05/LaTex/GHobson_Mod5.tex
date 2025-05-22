@@ -4,6 +4,15 @@
 
 \begin{document}
 
+
+\section*{Gary Hobson}
+\section*{MAT260 Module 5}
+\section*{June 2, 2025}
+\newpage
+
+
+
+\section*{8.5-2}
 Given: The initial AES key is 128 bits of all 1s. So:
 \[
 W(0) = W(1) = W(2) = W(3) = \text{FF FF FF FF}
@@ -66,5 +75,67 @@ W(11) = W(9)
 \]
 
 \textbf{Confirmed.}
+
+\newpage
+
+
+
+\section*{8.5-6}
+If my machine can test \( 2^{56} \) keys per second, but the AES keyspace has \( 2^{128} \) keys.
+
+To find how long it will take:
+\[
+\frac{2^{128}}{2^{56}} = 2^{72} \text{ seconds}
+\]
+
+Convert seconds into years:
+\[
+2^{72} \approx 4.7 \times 10^{21} \text{ seconds}
+\]
+There are approximately \( 3.15 \times 10^{7} \) seconds in a year:
+\[
+\frac{4.7 \times 10^{21}}{3.15 \times 10^{7}} \approx 1.49 \times 10^{14} \text{ years}
+\]
+
+So, it would take approximately 149 trillion years for the machine to brute force all \( 2^{128} \) AES keys even with a speed of \( 2^{56} \) keys per second. This confirms the astronomical strength of AES-128 against brute force attacks.
+\newpage
+
+
+
+
+
+
+
+%*******************************************************************
+\section*{9.9-1}
+
+\newpage
+
+
+
+
+
+%*******************************************************************
+\section*{9.9-2}
+
+\newpage
+
+
+
+
+
+%*******************************************************************
+\section*{9.9-3}
+
+\newpage
+
+
+
+
+%*******************************************************************
+\section*{9.9-6}
+
+\newpage
+
 
 \end{document}
