@@ -1,0 +1,329 @@
+% Problem 9 Code Here
+
+% Vigenère Cipher Decryption (Problem 9 - ocwy)
+% Using correlation with English letter frequencies
+
+% Step 1: Load ciphertexts from textbook helper file
+
+
+% Step 2: Define standard English letter frequencies (a–z)
+freqs = [0.08167 0.01492 0.02782 0.04253 0.12702 0.02228 0.02015 0.06094 ...
+         0.06966 0.00153 0.00772 0.04025 0.02406 0.06749 0.07507 0.01929 ...
+         0.00095 0.05987 0.06327 0.09056 0.02758 0.00978 0.02360 0.00150 ...
+         0.01974 0.00074];
+
+% Step 3: Set key length
+m = 6;
+key = zeros(1, m);  % initialize key array
+
+% Step 4: Find best shift for each key position using correlation
+for i = 1:m
+    max_corr = -inf;
+    best_shift = 0;
+
+    for shift = 0:25
+        vec = circshift(vigvec(ocwy, m, i), -shift);
+        c = corrcoef(vec, freqs);
+        if c(1,2) > max_corr
+            max_corr = c(1,2);
+            best_shift = shift;
+        end
+    end
+
+    key(i) = -best_shift;  % negate for decryption
+end
+
+% Step 5: Decrypt the ciphertext
+plaintext = vigenere(ocwy, key);
+
+% Step 6: Display results
+disp('Decrypted Plaintext Preview:');
+disp(plaintext(1:min(500, length(plaintext))));
+disp('Decryption Key (letters):');
+disp(int2text(mod(-key, 26)));
+disp('Decryption Key (numeric):');
+disp(key);
+
+
+
+
+
+C:\Users\Jim>where python
+C:\cygwin64\bin\python
+C:\Users\Jim\AppData\Local\Programs\Python\Python313\python.exe
+D:\anaconda_download_files\python.exe
+C:\Users\Jim\AppData\Local\Microsoft\WindowsApps\python.exe
+
+C:\Users\Jim>
+
+
+
+
+
+
+
+
+
+
+
+This is exercise XXXX from section XXXX from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This must be solved in MATLAB
+
+
+XXXXXXX
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+
+
+
+Section 9.9 (Computer Problems): Problems 1, 2, 3, 6
+
+//**************************************************************************
+This is exercise 2 from section 9.9 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This must be solved in MATLAB
+
+
+2. In an RSA cryptosystem, suppose you know
+n=718548065973745507, e = 3449, and
+d = 543546506135745129. Factor n using the ar ≡ 1 method
+of Subsection 9.4.2.
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+//*********************************************************************
+This is exercise 3 from section 9.9 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This must be solved in MATLAB
+
+
+3. Choose two 30-digit primes p and q and an encryption exponent e.
+Encrypt each of the plaintexts cat, bat, hat, encyclopedia,
+antidisestablishmentarianism. Can you tell from looking at the
+ciphertexts that the first three plaintexts differ in only one letter or
+that the last two plaintexts are much longer than the first three?
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+//****************************************************************************
+
+This is exercise 6 from section 9.9 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+This must be solved in MATLAB
+
+6. Let n = 537069139875071. Suppose you know that
+859753244431662 ≡ 4624361062612 (mod n).
+Factor n.
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+//****************************************************************************
+
+
+MODULE 6
+
+
+//****************************************************************************
+This is exercise 2 from section 11.6 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+2. 1. Alice claims that she knows who will win the next World
+Cup. She takes the name of the team, T, and encrypts it
+with a one-time pad K, and sends C = T ⊕ K to Bob.
+After the World Cup is finished, Alice reveals K, and
+Bob computes T = C ⊕ K to determine Alice’s guess.
+Why should Bob not believe that Alice actually guessed
+the correct team, even if T = C ⊕ K is correct?
+2. To keep Alice from changing K, Bob requires Alice to
+send not only C = T ⊕ K but also H(K), where H is
+a good cryptographic hash function. How does the use of
+the hash function convince Bob that Alice is not
+changing K?
+3. In the procedure in (b), Bob receives C and H(K).
+Show how he can determine Alice’s prediction, without
+needing Alice to send K? (Hint: There are fewer than
+100 teams T that could win the World Cup.)
+
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+//****************************************************************************
+
+This is exercise 6 from section 11.6 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+6. One way of storing and verifying passwords is the following. A file
+contains a user’s login id plus the hash of the user’s password.
+When the user logs in, the computer checks to see if the hash of
+the password is the same as the hash stored in the file. The
+password is not stored in the file. Assume that the hash function is
+a good cryptographic hash function.
+1. Suppose Eve is able to look at the file. What property of
+the hash function prevents Eve from finding a password
+that will be accepted as valid?
+2. When the user logs in, and the hash of the user’s
+password matches the hash stored in the file, what
+property of the hash function says that the user probably
+entered the correct password? (Hint: Your answers to (a)
+and (b) should not be the same.)
+
+
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+
+
+//****************************************************************************
+
+This is exercise 10 from section 11.6 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+10. An unenlightened professor asks his students to memorize the
+first 1000 digits of π for the exam. To grade the exam, he uses a
+100-digit cryptographic hash function H. Instead of carefully
+reading the students’ answers, he hashes each of them individually
+to obtain binary strings of length 100. Your score on the exam is
+the number of bits of the hash of your answer that agree with the
+corresponding bits of the hash of the correct answer.
+1. If someone gets 100% on the exam, why is the professor
+confident that the student’s answer is correct?
+2. Suppose each student gets every digit of π wrong (a very
+unlikely occurrence!), and they all have different
+answers. Approximately what should the average on the
+exam be?
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+//****************************************************************************
+
+This is exercise 2 from section 12.8 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+2. Each person in the world flips 100 coins and obtains a sequence of
+length 100 consisting of Heads and Tails. (There are 2100 ≈ 1030
+possible sequences.) Assume that there are approximately 1010
+people in the world. What is the probability that two people obtain
+the same sequence of Heads and Tails? Your answer should be
+accurate to at least two decimal places.
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+//****************************************************************************
+
+This is exercise 4 from section 12.8 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+4. Alice uses double encryption with a block cipher to send messages
+to Bob, so c = EK1(EK2(m)) gives the encryption. Eve obtains
+a plaintext–ciphertext pair (m, c) and wants to find K1, K2 by
+the Birthday Attack. Suppose that the output of EK has N bits.
+Eve computes two lists:
+1. EK(m) for 3 ⋅ 2N/2 randomly chosen keys K.
+2. DL(c) for 3 ⋅ 2N/2 randomly chosen keys L.
+1. Why is there a very good chance that Eve finds
+a key pair (L, K) such that c = EL(EK(m))
+?
+2. Why is it unlikely that (L, K) is the correct
+key pair? (Hint: Look at the analysis of the
+Meet-in-the-Middle Attack in Section 6.5.)
+3. What is the difference between the Meet-inthe-
+Middle Attack and what Eve does in this
+problem?
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+//****************************************************************************
+
+This is exercise 11 from section 12.8 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+11. Bob signs contracts by signing the hash values of the contracts. He
+is using a hash function H with a 50-bit output. Eve has a
+document M that states that Bob will pay her a lot of money. Eve
+finds a file with 109 documents that Bob has signed. Explain how
+Eve can forge Bob’s signature on a document (closely related to M
+) that states that Bob will pay Eve a lot of money. (Note: You may
+assume that Eve can do up to 230 calculations.)
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+
+//****************************************************************************
+
+This is exercise 1 from section 12.9 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+1. 1. If there are 30 people in a classroom, what is the
+probability that at least two have the same birthday?
+Compare this to the approximation given by formula
+(8.1).
+2. How many people should there be in a classroom in
+order to have a 99% chance that at least two have the
+same birthday? (Hint: Use the approximation to obtain
+an approximate answer. Then use the product, for
+various numbers of people, until you find the exact
+answer.)
+3. How many people should there be in a classroom in
+order to have 100% probability that at least two have the
+same birthday?
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 
+
+//****************************************************************************
+
+This is exercise 2 from section 12.9 from the Introduction_to_Cryptography_with_Coding_Theory.pdf.
+
+2. A professor posts the grades for a class using the last four digits of
+the Social Security number of each student. In a class of 200
+students, what is the probability that at least two students have the
+same four digits?
+
+Could you read through this book again and see how this exercise is solved in the book?  
+Could you also look through the appendix of the book and see if there is an exercise  
+similar to this? Let me know how they solved it in the appendix.  Also, could you look 
+through the Solution_Manual_for_Introduction_to_cryptography_with_coding_theory.pdf and 
+see if this exercise is in there.  If so, could you check and confirm that the solution you provided is correct? 

@@ -36,3 +36,15 @@ for k=1:ay,
 end; %end for k
 end; %end for j
 
+% function result = powermod(a, e, n)
+%     % Symbolic modular exponentiation (safe for RSA-sized numbers)
+%     result = sym(1);
+%     a = mod(a, n);
+%     while e > 0
+%         if mod(e, 2) == 1
+%             result = mod(result * a, n);
+%         end
+%         e = floor(e / 2);
+%         a = mod(a * a, n);
+%     end
+% end

@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+% Set 1-inch margins and double spacing
+\geometry{a4paper, margin=1in}
+\doublespacing
+
+% Remove page number on first page
+\pagestyle{plain}
+
+\begin{document}
+
+% Title Page
+\begin{center}
+    \textbf{\Large MAT-260 Milestone Two: Cryptanalysis and Algorithmic Analysis of the Affine Cipher} \\
+    \vspace{0.5cm}
+    Gary Hobson \\
+    Southern New Hampshire University \\
+    June 2025
+\end{center}
+
+% Suppress page number on title page
+\thispagestyle{empty}
+
+% Start new page for content
+\clearpage
+
+\section*{Introduction}
+In Milestone One, I introduced the Affine Cipher as a classical encryption method that elegantly combines modular arithmetic, multiplicative inverses, and linear transformations. For Milestone Two, I expand upon that foundation by analyzing the encryption and decryption algorithms in greater depth, exploring the mathematical structure that makes the Affine Cipher function, and examining how an adversary might attack this system. I find this analysis particularly compelling because it provides insight into both the strengths and inherent vulnerabilities of the Affine Cipher, setting the stage for further comparison with modern encryption systems in the final project. My goal is to understand not only how the cipher operates but also why it fails to meet modern security standards, preparing me for a deeper exploration of contemporary cryptographic methods.
+
+\section*{Encryption and Decryption Algorithms}
+The Affine Cipher encrypts each letter of the plaintext using the formula:
+\[
+E(x) = (a \cdot x + b) \mod 26
+\]
+\begin{itemize}
+    \item \( x \) is the numeric equivalent of a letter (A=0, B=1, ..., Z=25),
+    \item \( a \) is the multiplicative key (must be coprime to 26),
+    \item \( b \) is the additive key.
+\end{itemize}
+To decrypt a message, the inverse function is used:
+\[
+D(y) = a^{-1} \cdot (y - b) \mod 26
+\]
+Here, \( a^{-1} \) is the modular inverse of \( a \) modulo 26. This ensures that the transformation can be reversed. MATLAB is particularly useful for simulating this process. By writing scripts that iterate over possible values of \( a \) and \( b \), I was able to observe how the transformation affects different messages and verify that the decryption reliably reverses the encryption.
+
+\textbf{Example:} If \( a = 5 \), \( b = 8 \), then for plaintext "HELLO" (7, 4, 11, 11, 14), the ciphertext becomes:
+\begin{itemize}
+    \item \( E(7) = (5 \cdot 7 + 8) \mod 26 = 43 \mod 26 = 17 \quad (\text{R}) \)
+    \item \( E(4) = (5 \cdot 4 + 8) \mod 26 = 28 \mod 26 = 2 \quad (\text{C}) \)
+    \item \ldots and so on.
+\end{itemize}
+
+\section*{Mathematical Principles}
+The cipher is rooted in modular arithmetic and requires \( a \) to be coprime to 26 so that an inverse exists. There are 12 such values: \{1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25\}. This restriction is critical because without an inverse, decryption becomes impossible.
+
+The encryption forms a bijection of the alphabet, meaning each letter maps to exactly one other letter. This is only possible when \( a \) is invertible mod 26. The concept of modular inverses and bijective mappings is fundamental not just in classical ciphers but also in modern systems like RSA and ECC.
+
+I used MATLAB to confirm modular inverse calculations and validate that every key pair \( (a, b) \) in the keyspace of 312 combinations results in a distinct permutation of the alphabet.
+
+\section*{Cryptanalysis: Frequency Analysis Attack}
+Because the Affine Cipher is monoalphabetic, it is vulnerable to frequency analysis. English letters like 'E', 'T', and 'A' occur with high frequency. In a sufficiently long ciphertext, these patterns persist.
+
+To simulate this, I encrypted a passage of text in MATLAB using a known \( (a, b) \) pair. I then counted the frequency of each character in the ciphertext and compared it with standard English frequencies. By matching peaks in the ciphertext with known English letter frequencies, I was able to recover likely mappings, eventually determining both \( a \) and \( b \).
+
+\section*{Feasibility and Limitations of the Attack}
+A brute force attack on the Affine Cipher is trivial. Since there are only 312 possible key pairs, an attacker can try each one and visually inspect the output. This means the cipher offers essentially no real world security.
+
+Even if brute force is avoided, frequency analysis succeeds with high probability. In practice, it takes only a few dozen characters of ciphertext to crack the Affine Cipher.
+
+This demonstrates why monoalphabetic ciphers are obsolete for modern use. The absence of key expansion, dynamic permutation, or block based obfuscation makes the Affine Cipher suitable only as an educational tool, not as a security protocol.
+
+\section*{Conclusion}
+Through this milestone, I examined the Affine Cipher from an algorithmic and mathematical standpoint and demonstrated its vulnerability through manual and programmatic attacks. MATLAB provided a platform for encoding, decoding, and analyzing the cipher's behavior.
+
+In the final project, I plan to compare the Affine Cipher with the Advanced Encryption Standard (AES) to illustrate how modern ciphers overcome the mathematical simplicity that undermines classical ciphers. This will highlight the evolution of cryptographic methods and demonstrate why strong, dynamic, and computationally secure algorithms are necessary in today's digital world.
+
+\section*{References}
+\begin{itemize}
+    \item Trappe, W., \& Washington, L. C. (2017). \textit{Introduction to Cryptography with Coding Theory} (3rd ed.). Pearson.
+    \item Singh, S. (1999). \textit{The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography}. Anchor Books.
+    \item GeeksforGeeks. (n.d.). \textit{Affine Cipher Explained}. Retrieved from \url{https://www.geeksforgeeks.org/affine-cipher-explained/}
+\end{itemize}
+
+\end{document}
