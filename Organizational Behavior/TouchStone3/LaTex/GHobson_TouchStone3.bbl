@@ -1,0 +1,713 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global}
+    \entry{beverage2025}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=92fb8c915be5d36c68f7270aa6c66dee}{%
+           family={{Beverage Industry}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{fullhash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{bibnamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authorbibnamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authornamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authorfullhash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Craft soda market trends for 2025}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.beverageindustry.com/articles/97466-state-of-the-beverage-industry-carbonated-soft-drinks-see-volume-declines
+      \endverb
+      \verb{url}
+      \verb https://www.beverageindustry.com/articles/97466-state-of-the-beverage-industry-carbonated-soft-drinks-see-volume-declines
+      \endverb
+    \endentry
+    \entry{elpaso2024}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6eeaebc43527598836ce5ee7169d9369}{%
+           family={{El Paso Chamber}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{fullhash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{bibnamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authorbibnamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authornamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authorfullhash}{6eeaebc43527598836ce5ee7169d9369}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Economic indicators for El Paso, Texas}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.elpaso.org/economic-indicators-2024
+      \endverb
+      \verb{url}
+      \verb https://www.elpaso.org/economic-indicators-2024
+      \endverb
+    \endentry
+    \entry{mintel2024}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b1ecdd77ffd925167df230f87c1c8ea6}{%
+           family={Mintel},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{fullhash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{bibnamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authorbibnamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authornamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authorfullhash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Consumer trends in the craft beverage industry}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.mintel.com/craft-beverage-trends-2024
+      \endverb
+      \verb{url}
+      \verb https://www.mintel.com/craft-beverage-trends-2024
+      \endverb
+    \endentry
+    \entry{sophia_conflict}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Conflict in organizations}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/1/14519/conflict-in-organizations
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/1/14519/conflict-in-organizations
+      \endverb
+    \endentry
+    \entry{sophia_culture}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cultural differences}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-4/2/14492/cultural-differences
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-4/2/14492/cultural-differences
+      \endverb
+    \endentry
+    \entry{sophia_env}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{3}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Internal and external environments}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-1/2/14480/internal-and-external-environments
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-1/2/14480/internal-and-external-environments
+      \endverb
+    \endentry
+    \entry{sophia_change}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Organizational change}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-3/2/14486/organizational-change
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-3/2/14486/organizational-change
+      \endverb
+    \endentry
+    \entry{sophia_politics}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{5}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Political behavior in organizations}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/3/14521/political-behavior-in-organizations
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/3/14521/political-behavior-in-organizations
+      \endverb
+    \endentry
+    \entry{sophia_response}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{6}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Responding to conflict}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/2/14520/responding-to-conflict
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/2/14520/responding-to-conflict
+      \endverb
+    \endentry
+    \entry{sophia_team}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{7}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Team development over time}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-3/2/14515/team-development-over-time
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-3/2/14515/team-development-over-time
+      \endverb
+    \endentry
+    \entry{worldbank2025}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=32730e15a7ca0bf0686ea8d4a3a46ab9}{%
+           family={{World Bank}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{fullhash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{bibnamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authorbibnamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authornamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authorfullhash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Labor market statistics: Jamaica and Dominican Republic}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=JM-DO
+      \endverb
+      \verb{url}
+      \verb https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=JM-DO
+      \endverb
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global}
+    \entry{beverage2025}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=92fb8c915be5d36c68f7270aa6c66dee}{%
+           family={{Beverage Industry}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{fullhash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{bibnamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authorbibnamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authornamehash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \strng{authorfullhash}{92fb8c915be5d36c68f7270aa6c66dee}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Craft soda market trends for 2025}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.beverageindustry.com/articles/97466-state-of-the-beverage-industry-carbonated-soft-drinks-see-volume-declines
+      \endverb
+      \verb{url}
+      \verb https://www.beverageindustry.com/articles/97466-state-of-the-beverage-industry-carbonated-soft-drinks-see-volume-declines
+      \endverb
+    \endentry
+    \entry{elpaso2024}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6eeaebc43527598836ce5ee7169d9369}{%
+           family={{El Paso Chamber}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{fullhash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{bibnamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authorbibnamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authornamehash}{6eeaebc43527598836ce5ee7169d9369}
+      \strng{authorfullhash}{6eeaebc43527598836ce5ee7169d9369}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Economic indicators for El Paso, Texas}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.elpaso.org/economic-indicators-2024
+      \endverb
+      \verb{url}
+      \verb https://www.elpaso.org/economic-indicators-2024
+      \endverb
+    \endentry
+    \entry{mintel2024}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b1ecdd77ffd925167df230f87c1c8ea6}{%
+           family={Mintel},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{fullhash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{bibnamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authorbibnamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authornamehash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \strng{authorfullhash}{b1ecdd77ffd925167df230f87c1c8ea6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Consumer trends in the craft beverage industry}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.mintel.com/craft-beverage-trends-2024
+      \endverb
+      \verb{url}
+      \verb https://www.mintel.com/craft-beverage-trends-2024
+      \endverb
+    \endentry
+    \entry{sophia_conflict}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Conflict in organizations}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/1/14519/conflict-in-organizations
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/1/14519/conflict-in-organizations
+      \endverb
+    \endentry
+    \entry{sophia_culture}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cultural differences}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-4/2/14492/cultural-differences
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-4/2/14492/cultural-differences
+      \endverb
+    \endentry
+    \entry{sophia_env}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{3}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Internal and external environments}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-1/2/14480/internal-and-external-environments
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-1/2/14480/internal-and-external-environments
+      \endverb
+    \endentry
+    \entry{sophia_change}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Organizational change}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-3/2/14486/organizational-change
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-1-3/2/14486/organizational-change
+      \endverb
+    \endentry
+    \entry{sophia_politics}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{5}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Political behavior in organizations}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/3/14521/political-behavior-in-organizations
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/3/14521/political-behavior-in-organizations
+      \endverb
+    \endentry
+    \entry{sophia_response}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{6}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Responding to conflict}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/2/14520/responding-to-conflict
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-5/2/14520/responding-to-conflict
+      \endverb
+    \endentry
+    \entry{sophia_team}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4ae41b888f93e958ed93ceb65492360}{%
+           family={{Sophia Learning}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Organizational Behavior [MOOC], Sophia}%
+      }
+      \strng{namehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{fullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{bibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorbibnamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authornamehash}{d4ae41b888f93e958ed93ceb65492360}
+      \strng{authorfullhash}{d4ae41b888f93e958ed93ceb65492360}
+      \field{extraname}{7}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Team development over time}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-3/2/14515/team-development-over-time
+      \endverb
+      \verb{url}
+      \verb https://app.sophia.org/course_preview/organizational-behavior/challenge-3-3/2/14515/team-development-over-time
+      \endverb
+    \endentry
+    \entry{worldbank2025}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=32730e15a7ca0bf0686ea8d4a3a46ab9}{%
+           family={{World Bank}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{fullhash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{bibnamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authorbibnamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authornamehash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \strng{authorfullhash}{32730e15a7ca0bf0686ea8d4a3a46ab9}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Labor market statistics: Jamaica and Dominican Republic}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=JM-DO
+      \endverb
+      \verb{url}
+      \verb https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=JM-DO
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

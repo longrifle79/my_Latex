@@ -1,0 +1,27 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'GHobson_TouchStone3.blg'
+[67] biber:340> INFO - === Wed Jun  4, 2025, 14:53:10
+[95] Biber.pm:419> INFO - Reading 'GHobson_TouchStone3.bcf'
+[157] Biber.pm:979> INFO - Found 11 citekeys in bib section 0
+[172] Biber.pm:4419> INFO - Processing section 0
+[180] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[181] bibtex.pm:1713> INFO - LaTeX decoding ...
+[187] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[253] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[253] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[253] Biber.pm:4239> INFO - Sorting list 'apa/apasortcite//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[253] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[270] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[270] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[270] Biber.pm:4239> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[270] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[280] bbl.pm:660> INFO - Writing 'GHobson_TouchStone3.bbl' with encoding 'UTF-8'
+[287] bbl.pm:763> INFO - Output to GHobson_TouchStone3.bbl
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_env' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_change' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_culture' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_team' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_conflict' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_politics' is not an integer - this will probably not sort properly.
+[288] Biber.pm:131> WARN - legacy year field 'n.d.' in entry 'sophia_response' is not an integer - this will probably not sort properly.
+[288] Biber.pm:133> INFO - WARNINGS: 7

@@ -1,0 +1,96 @@
+% Preamble: Setting up the document with APA-like formatting for PDFLaTeX
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{setspace}
+\doublespacing
+\usepackage{times} % Times font for PDFLaTeX compatibility
+\usepackage{titlesec} % Replace sectsty to avoid warnings
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
+\usepackage[backend=biber, natbib=true, style=apa]{biblatex} % Specify biber backend
+\addbibresource{references.bib}
+\usepackage{enumitem} % For numbered lists
+\usepackage{hyphenat} % Improve hyphenation
+\hyphenation{Quench-bliss ex-ter-nal en-vi-ron-ment op-por-tu-ni-ties Ja-maica Do-mi-ni-can} % Custom hyphenation rules
+
+% Begin Document
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1in}
+    {\LARGE\bfseries Quenchbliss Organizational Health: Strategies for Growth and Stability \par}
+    \vspace{1in}
+    {\large Gary Hobson \par}
+    \vspace{0.5in}
+    {\large June 4, 2025 \par}
+    \vspace{0.5in}
+    {\large Sophia Learning: Organizational Behavior \par}
+\end{titlepage}
+
+% Introduction
+\section*{Introduction}
+Quenchbliss, a craft soda company headquartered in El Paso, Texas, with facilities in Juarez, Mexico, is experiencing rapid growth, having increased sales from \$16 million to \$20 million in 2023 due to its Juarez expansion. The company now plans to expand into Jamaica and the Dominican Republic, targeting tourism-heavy areas like hotels, bars, and restaurants. This growth, while promising, poses challenges to organizational health, including potential declines in employee motivation, difficulties in cross-functional team cohesion, and risks of conflict and organizational politics during instability. Leveraging insights from the SWOT analysis conducted in Touchstone 1 and the organizational structure and motivational strategies recommended in Touchstone 2, this report provides actionable recommendations to maintain Quenchbliss’s organizational health. The paper is structured into five sections: analyzing the external environment, managing change, addressing diversity and cultural differences, facilitating team development, and mitigating conflict, power, and politics.
+
+% Section 1: External Environment
+\section{External Environment}
+Quenchbliss’s external environment, as identified in the SWOT analysis (Touchstone 1), presents both opportunities and threats that must be strategically managed during its expansion. Strengths include unique flavor innovation and a strong local reputation in El Paso and Juarez, while weaknesses such as historical high turnover (improved via Touchstone 2 strategies) and limited global brand recognition pose challenges. Opportunities include the growing craft beverage demand and expansion into Jamaica and the Dominican Republic, where tourism drives soda consumption. Threats encompass intense competition from global brands and economic downturn risks in El Paso \citep{sophia_env}.
+
+To better understand these factors, the PESTLE framework—Political, Economic, Social, Technological, Legal, and Environmental—is applied. Politically, Quenchbliss must navigate trade regulations between the U.S., Mexico, Jamaica, and the Dominican Republic, such as tariffs on imported ingredients. Economically, a potential downturn in El Paso, where 22\% of residents live below the poverty line \citep{elpaso2024}, could reduce local sales, though Caribbean tourism offers growth potential. Socially, the rising demand for craft beverages, with a 7\% annual growth rate \citep{mintel2024}, supports expansion, but Quenchbliss must adapt to local tastes (e.g., tropical flavors in Jamaica). Technologically, social media trends can amplify marketing, as 65\% of craft soda consumers discover brands online \citep{beverage2025}. Legally, compliance with labor laws in new markets, such as Jamaica’s \$1.50/hour minimum wage, is critical. Environmentally, sustainability pressures in tourism-heavy areas require eco-friendly packaging \citep{sophia_env}.
+
+Quenchbliss should address opportunities by leveraging social media for targeted marketing in the Caribbean, promoting tropical-flavored sodas to tourists. To mitigate threats, the company can diversify suppliers to reduce dependency on U.S. markets, countering economic risks in El Paso, and invest in sustainable packaging to align with environmental expectations, ensuring long-term competitiveness.
+
+% Section 2: Change Management
+\section{Change Management}
+Quenchbliss’s expansion into Jamaica and the Dominican Republic, as outlined in Touchstone 2, requires a structured change management approach to sustain employee motivation, which remains at risk despite improved turnover. Kotter’s 8-Step Change Model, recommended in Touchstone 2, is the most effective framework due to its focus on creating a sense of urgency, building coalitions, and sustaining change—key for maintaining motivation during rapid growth \citep{sophia_change}.
+
+The steps and specific actions for Quenchbliss are as follows:
+\begin{enumerate}
+    \item \textit{Create Urgency}: Highlight the expansion’s benefits, such as job creation and market growth, to rally employees around the vision.
+    \item \textit{Form a Powerful Coalition}: Assemble a cross-functional leadership team, reflecting the matrix structure from Touchstone 2, to champion the change.
+    \item \textit{Develop a Vision and Strategy}: Articulate a vision of becoming a leading craft soda brand in the Caribbean, with strategies like localized production.
+    \item \textit{Communicate the Vision}: Use town halls and internal newsletters to ensure all 80 employees understand the vision and their roles.
+    \item \textit{Empower Broad-Based Action}: Remove barriers by providing training on Caribbean market dynamics and empowering teams to make decisions.
+    \item \textit{Generate Short-Term Wins}: Pilot a product launch in one Jamaican hotel, celebrating early successes to maintain motivation.
+    \item \textit{Consolidate Gains and Produce More Change}: Expand successful strategies to the Dominican Republic, refining processes based on pilot feedback.
+    \item \textit{Anchor Changes in the Culture}: Embed collaboration and adaptability into Quenchbliss’s culture through updated policies and recognition programs \citep{sophia_change}.
+\end{enumerate}
+
+This model aligns with the matrix structure from Touchstone 2, ensuring clear roles during expansion, and addresses motivation concerns by involving employees at every step, fostering ownership and engagement.
+
+% Section 3: Diversity and Cultural Differences
+\section{Diversity and Cultural Differences}
+Quenchbliss’s expansion into Jamaica and the Dominican Republic introduces cultural differences that may impact team cohesion, especially in cross-functional teams. Hofstede’s Cultural Dimensions framework helps analyze these differences. Jamaica scores high on individualism (39), valuing personal achievement, whereas the Dominican Republic is more collectivist (30), prioritizing group harmony. Jamaica has a lower power distance (45) compared to the Dominican Republic (65), indicating greater acceptance of hierarchical authority in the latter. Both score high on masculinity (Jamaica: 68, Dominican Republic: 65), emphasizing competition, but Jamaica’s uncertainty avoidance (13) is lower than the Dominican Republic’s (45), suggesting greater comfort with ambiguity \citep{sophia_culture}.
+
+Specific differences include labor norms. Jamaica’s minimum wage is approximately \$1.50/hour, with a mandatory two-week vacation, while the Dominican Republic’s is \$1.20/hour, with 14 days of vacation \citep{worldbank2025}. These disparities may affect employee expectations and compensation structures. Quenchbliss must also consider cultural attitudes toward work-life balance, such as longer lunch breaks in the Dominican Republic reflecting collectivist social norms.
+
+To ensure diversity, Quenchbliss should implement cultural sensitivity training, focusing on Hofstede’s dimensions to bridge differences (e.g., encouraging teamwork in Jamaica’s individualistic culture). Inclusive hiring practices, such as recruiting locally in both regions, will enhance representation. Additionally, establishing diversity councils can promote equity across the organization, ensuring all voices are heard, which supports cross-functional team effectiveness \citep{sophia_culture}.
+
+% Section 4: Team Development
+\section{Team Development}
+With new team members joining Quenchbliss’s expanded operations, the company must help teams reach the performing stage quickly to maintain productivity and motivation. Tuckman’s Stages of Team Development—Forming, Storming, Norming, Performing, and Adjourning—provides a framework to achieve this. Quenchbliss’s concern about motivation during expansion underscores the need for rapid team integration \citep{sophia_team}.
+
+At the \textit{Forming} stage, Quenchbliss should facilitate team introductions and set clear roles within the matrix structure, reducing uncertainty for new Jamaican and Dominican hires. In the \textit{Storming} stage, potential conflicts (e.g., over work styles) can be addressed through mediation and conflict resolution training, ensuring motivation isn’t derailed. During the \textit{Norming} stage, shared goals, such as launching a product in a specific hotel, can unify teams, while team-building activities (e.g., cultural exchange events) foster cohesion. At the \textit{Performing} stage, Quenchbliss should empower teams with decision-making autonomy, aligning with Touchstone 2’s promotion pathways to sustain motivation. Finally, in the \textit{Adjourning} stage, recognize team achievements (e.g., via awards from Touchstone 2’s recognition program) to maintain morale for future projects \citep{sophia_team}.
+
+These actions ensure teams move efficiently to the performing stage, addressing Quenchbliss’s rapid growth by integrating new members and sustaining motivation through structured support and recognition.
+
+% Section 5: Conflict, Power, and Politics
+\section{Conflict, Power, and Politics}
+Quenchbliss’s expansion may lead to conflict, power struggles, and organizational politics, particularly as cross-functional teams navigate new roles and resources. The Thomas-Kilmann Conflict Mode Instrument (TKI) provides strategies to manage conflict. Collaboration, one of TKI’s five modes, is most effective for Quenchbliss, encouraging teams to work together on solutions (e.g., resolving disputes over feature scope by finding win-win outcomes). This approach reduces tension and supports team cohesion during instability \citep{sophia_conflict}.
+
+Power struggles may arise as departments compete for resources during expansion. The resource dependence model explains this dynamic: departments controlling critical resources (e.g., marketing controlling customer data) gain power, potentially leading to politics, such as hoarding resources or forming alliances to influence decisions. For example, the engineering team in Juarez might withhold technical insights to gain leverage over the new Caribbean teams, risking mistrust \citep{sophia_politics}.
+
+To mitigate these issues, Quenchbliss should establish conflict resolution protocols, training managers to use collaboration (TKI) for disputes. Transparency in resource allocation, such as shared budgets across regions, reduces power imbalances. Aligning teams with superordinate goals (e.g., a successful Caribbean launch) minimizes politics by fostering cooperation, ensuring stability during this transformative period \citep{sophia_response}.
+
+% Conclusion
+\section*{Conclusion}
+Quenchbliss’s rapid expansion into Jamaica and the Dominican Republic offers significant opportunities but also challenges to organizational health. Applying the PESTLE framework ensures Quenchbliss leverages external opportunities (e.g., craft beverage demand) while mitigating threats (e.g., competition). Kotter’s 8-Step Model provides a structured approach to manage change, sustaining motivation through clear vision and empowerment. Hofstede’s Cultural Dimensions guide cultural integration, ensuring diversity through inclusive practices. Tuckman’s Stages accelerate team development, moving new teams to the performing stage efficiently. Finally, the Thomas-Kilmann Instrument and resource dependence model mitigate conflict and politics, promoting collaboration and transparency. Together, these strategies ensure Quenchbliss maintains motivation, team cohesion, and stability, positioning the company for long-term success in a competitive market.
+
+% References
+\printbibliography[title=References]
+
+\end{document}
