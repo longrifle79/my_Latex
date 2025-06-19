@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib} % Explicitly use numerical citation style
+
+% Set 1-inch margins and double spacing
+\geometry{a4paper, margin=1in}
+\doublespacing
+
+% Remove page number on first page
+\pagestyle{plain}
+
+% Use numerical citation style
+\bibliographystyle{plain}
+
+\begin{document}
+
+% Title Page
+\begin{center}
+    \textbf{\Large Reflection on ML KEM and the Legal, Ethical, and Privacy Implications of Post Quantum Cryptography} \\
+    \vspace{0.5cm}
+    Gary Hobson \\
+    Southern New Hampshire University \\
+    June 15, 2025
+\end{center}
+
+% Suppress page number on title page
+\thispagestyle{empty}
+
+% Start new page for content
+\clearpage
+
+\section*{Introduction}
+Modern cryptography provides powerful tools to ensure secure communication in a digital world. My final project explored ML KEM, a post quantum cryptographic algorithm that aims to remain secure even if quantum computing becomes viable. I find its mathematical strength impressive, yet it is critical to understand the legal, ethical, and privacy concerns surrounding the deployment and potential misuse of such cryptosystems. This reflection builds on my coursework by examining how ML KEM fits into the broader landscape of cryptographic security, balancing its technical merits with the societal implications it carries.
+
+\section*{Relevant Legal Frameworks}
+As with any cryptographic system, ML KEM must operate within legal boundaries defined by national and international laws. The General Data Protection Regulation (GDPR) in the European Union \cite{gdpr} and the Electronic Communications Privacy Act (ECPA) in the United States \cite{ecpa} both influence how encryption can be used to protect personal data. Furthermore, international agreements such as the Wassenaar Arrangement \cite{wassenaar} place export restrictions on strong cryptography, potentially impacting the global use of advanced systems like ML KEM. These legal frameworks aim to balance security with national interests, but they can create tensions between innovation, surveillance, and privacy rights.
+
+\section*{Legal Implications Related to Privacy and Information Security}
+The legal impact of ML KEM centers around its resistance to quantum attacks, which strengthens information security but may hinder lawful access to data by authorities. For example, law enforcement often relies on the ability to decrypt data during investigations. If cryptographic systems like ML KEM become widely adopted without key escrow mechanisms or government access protocols, they could render traditional digital forensics ineffective. This raises significant challenges around lawful access versus the right to privacy, a debate already sparked by past legal cases like Apple vs. FBI \cite{trappe}.
+
+\section*{Ethical Dilemmas in Surveillance and Code Breaking}
+Cryptographic strength can be a double edged sword. On one hand, ML KEM protects users from surveillance, censorship, and data breaches. On the other hand, it can also shield bad actors. Ethical dilemmas arise when considering whether governments should have the right to weaken or bypass encryption for national security purposes. If surveillance agencies develop techniques to undermine ML KEM without public oversight, this could erode civil liberties. At the same time, denying individuals strong encryption may expose vulnerable populations to privacy violations, especially in authoritarian regimes \cite{trappe}.
+
+\section*{Morality and Legality of Cryptography}
+From a moral perspective, cryptography like ML KEM empowers individuals to control their own data. But the legality of using such strong encryption can be controversial. Some nations, including China and Russia, have imposed restrictions or backdoor requirements on cryptographic tools. The morality of enforcing such policies is questionable, especially when they compromise the privacy of law abiding citizens. Conversely, unfettered access to unbreakable encryption could be exploited by criminals and terrorist organizations. Striking a balance between these extremes remains one of the most pressing moral and legal challenges in the cryptographic landscape \cite{trappe}.
+
+\section*{Conclusion}
+ML KEM represents a promising step toward future proofing secure communication, but its adoption must be guided by thoughtful legal and ethical considerations. As we prepare for a quantum future, lawmakers, technologists, and ethicists must work together to ensure that security does not come at the cost of human rights. Cryptography will always be a powerful tool, but how we use it determines whether it protects or undermines the society it serves.
+
+\begin{thebibliography}{9}
+\bibitem{gdpr}
+European Parliament and Council. (2016). \textit{General Data Protection Regulation (GDPR)}. \url{https://gdpr-info.eu}
+\bibitem{ecpa}
+Electronic Communications Privacy Act (ECPA), 18 U.S. Code § 2510–2523.
+\bibitem{wassenaar}
+Wassenaar Arrangement. (2023). \textit{Dual-Use Goods and Technologies}. \url{https://www.wassenaar.org}
+\bibitem{trappe}
+Trappe, W., \& Washington, L. C. (2020). \textit{Introduction to Cryptography with Coding Theory} (3rd ed.). Pearson.
+\bibitem{nist}
+National Institute of Standards and Technology. (2024). \textit{FIPS 203: Module-Lattice-Based Key-Encapsulation Mechanism Standard}. \url{https://doi.org/10.6028/nist.fips.203}
+\end{thebibliography}
+
+\end{document}
